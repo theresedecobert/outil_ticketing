@@ -34,7 +34,7 @@ class Tickets
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answers::class)]
     private Collection $answers;
 
-    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Files::class)]
+    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Files::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $files;
 
     public function __construct()

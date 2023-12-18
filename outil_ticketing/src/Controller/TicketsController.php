@@ -2,14 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Files;
 use App\Entity\Tickets;
 use App\Form\TicketsType;
+use App\Service\pictureService;
+use App\Repository\FilesRepository;
 use App\Repository\TicketsRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tickets')]
 class TicketsController extends AbstractController
@@ -23,13 +26,14 @@ class TicketsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_tickets_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, pictureService $pictureService): Response
     {
         $ticket = new Tickets();
         $form = $this->createForm(TicketsType::class, $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->persist($ticket);
             $entityManager->flush();
 
@@ -71,7 +75,7 @@ class TicketsController extends AbstractController
     #[Route('/{id}', name: 'app_tickets_delete', methods: ['POST'])]
     public function delete(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$ticket->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $ticket->getId(), $request->request->get('_token'))) {
             $entityManager->remove($ticket);
             $entityManager->flush();
         }
