@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Answers index{% endblock %}
+
+{% block body %}
+    <h1>Answers index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Resoluted_at</th>
+                <th>DocLink</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for answer in answers %}
+            <tr>
+                <td>{{ answer.id }}</td>
+                <td>{{ answer.description }}</td>
+                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ answer.docLink }}</td>
+                <td>
+                    <a href="{{ path('app_answers_show', {'id': answer.id}) }}">show</a>
+                    <a href="{{ path('app_answers_edit', {'id': answer.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_answers_new') }}">Create new</a>
+{% endblock %}
