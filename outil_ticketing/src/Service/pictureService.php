@@ -14,42 +14,42 @@ class pictureService
         $this->params = $params;
     }
 
-    public function add(UploadedFile $picture, ?string $folder = '', ?int $width = 250, ?int $height = 250)
+    public function add(UploadedFile $file, ?string $folder = '', ?int $width = 250, ?int $height = 250)
     {
 
         $fichier = md5(uniqid(rand(), true)) . '.png';
 
 
         // Obtention des informations sur l'image
-        $picture_infos = getimagesize($picture);
+        $file_infos = getimagesize($file);
 
 
-        if ($picture === false) {
+        if ($file === false) {
             throw new \Exception('Format d\'image incorrect');
         }
 
         // Vérification du format de l'image
-        switch ($picture_infos['mime']) {
+        switch ($file_infos['mime']) {
             case 'image/png':
-                $picture_source = imagecreatefrompng($picture);
+                $file_source = imagecreatefrompng($file);
                 break;
             case 'image/jpeg':
-                $picture_source = imagecreatefromjpeg($picture);
+                $file_source = imagecreatefromjpeg($file);
                 break;
             case 'image/jpg':
-                $picture_source = imagecreatefromwebp($picture);
+                $file_source = imagecreatefromwebp($file);
                 break;
             default:
                 throw new Exception(('Format d\'image incorrect'));
         }
         // Redimensionnement de l'image
-        $imageWidth = $picture_infos[0];
-        $imageHeight = $picture_infos[1];
+        $imageWidth = $file_infos[0];
+        $imageHeight = $file_infos[1];
 
         //on recadre l'image 
         //on récupère les dimensions
-        $imageWidth = $picture_infos[0];
-        $imageHeight = $picture_infos[1];
+        $imageWidth = $file_infos[0];
+        $imageHeight = $file_infos[1];
 
         // on vérifie l'orientation de l'image
         switch($imageWidth <=> $imageHeight){
@@ -74,7 +74,7 @@ class pictureService
 
         //on crée une nouvelle image vierge dans laquelle on vient coller l'image redimensionnée.
         $resized_picture = imagecreatetruecolor($width, $height);
-        imagecopyresampled($resized_picture, $picture_source, 0 ,0, $src_x, $src_y, $width, $height, $squareSize, $squareSize);
+        imagecopyresampled($resized_picture, $file_source, 0 ,0, $src_x, $src_y, $width, $height, $squareSize, $squareSize);
 
         $path = $this->params->get('images_directory') . $folder;
 
@@ -85,7 +85,7 @@ class pictureService
         }
     // on stocke l'image recadrée
   imagepng($resized_picture, $path . '/mini/' . $width . $height . '-' . $fichier);
-    $picture->move($path . '/', $fichier);
+    $file->move($path . '/', $fichier);
 
     return $fichier; 
     }
