@@ -1,0 +1,34 @@
+@import 'mixins';
+@import 'variables';
+@import 'responsive';
+
+/*************** GLOBAL ***************/
+
+h1 {
+    @include title;
+}
+
+p,
+a,
+small,
+label {
+    @include paragraph;
+}
+
+.button {
+    color: white;
+    background-color: $blue;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.9;
+}
+
+.button:hover {
+    text-decoration: none;
+    box-shadow: $blue 1px 0 5px;
+    opacity: 1;
+}
