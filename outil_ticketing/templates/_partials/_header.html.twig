@@ -1,18 +1,16 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul class="navbar-nav-admin ml-auto">
-            {% if app.user %}
-                <li class="nav-item">
-                    <a class="nav-link" href="https://discord.com/channels/1125364671491362858/1153242082673172480">
-                        <i class="fa-brands fa-discord"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </a>
-                </li>
-            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="https://discord.com/channels/1125364671491362858/1153242082673172480" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout') }}">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
