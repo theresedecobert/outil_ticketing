@@ -1,0 +1,36 @@
+<aside class="col-md-2 pr-0">
+	<nav class="navbar navbar-expand-md flex-md-column flex-row align-items-start p-3 navbar-light" style="background-color:white;">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Menu pour mobile">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="sidebarNav">
+			<ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+				<li class="nav-item pt-3">
+					<a class="nav-link" href="{{ path('home') }}">
+						<i class="fa-solid fa-house"></i>
+						Accueil du site
+					</a>
+				</li>
+				<li class="nav-item pt-3">
+					<a class="nav-link" href="{{ path('redaction') }}">
+						<i class="fa-regular fa-file-lines"></i>
+						Mes articles
+					</a>
+				</li>
+				<li class="nav-item pt-3">
+					<a class="nav-link" href="{{ path('app_articles_new') }}">
+						<i class="fa-solid fa-pen-fancy"></i>
+						Nouvel article
+					</a>
+				</li>
+				<li class="nav-item pt-3">
+					<a class="nav-link" href="{{ path('app_logout') }}">
+						<i class="fa-solid fa-right-from-bracket"></i>
+						Me déconnecter
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</aside>
