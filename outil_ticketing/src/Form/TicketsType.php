@@ -6,6 +6,7 @@ use App\Entity\Tickets;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class TicketsType extends AbstractType
 {
@@ -17,6 +18,12 @@ class TicketsType extends AbstractType
             ->add('content')
             ->add('created_at')
             ->add('user')
+            ->add('files', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false
+            ])
         ;
     }
 
