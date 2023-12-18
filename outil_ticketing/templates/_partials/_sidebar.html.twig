@@ -1,0 +1,36 @@
+<aside class="col-md-2 pr-0 h-100">
+    <nav class="navbar navbar-expand-md flex-md-column flex-row align-items-start navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Menu pour mobile">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="sidebar">
+            <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+                <button class="button" type="button"><a href="{{ path('app_tickets_new') }}"><i class="fa-solid fa-plus"></i> Nouveau ticket</a></button>
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Chercher un ticket" aria-label="Search">
+                            <button class="button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                </nav>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('home') }}">
+                        <i class="fa-solid fa-house"></i>
+                        Tableau de bord</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="fa-regular fa-square-check"></i>
+                        Tickets résolus</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <i class="fa-solid fa-user"></i>
+                        Utilisateurs</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</aside>
