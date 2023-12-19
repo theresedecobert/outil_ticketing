@@ -20,7 +20,7 @@
             <tr>
                 <td>{{ answer.id }}</td>
                 <td>{{ answer.description }}</td>
-                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('d-m-Y à H:i') : '' }}</td>
+                <td>{{ answer.resolvedAt ? answer.resolvedAt|date('d-m-Y à H:i') : '' }}</td>
                 <td>{{ answer.docLink }}</td>
                 <td>
                     <a href="{{ path('app_answers_show', {'id': answer.id}) }}">Afficher</a>

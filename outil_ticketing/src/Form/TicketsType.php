@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Tickets;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
@@ -11,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TicketsType extends AbstractType
@@ -19,7 +21,7 @@ class TicketsType extends AbstractType
     {
         $builder
             ->add('status', ChoiceType::class, [
-                'label' => 'Status',
+                'label' => 'Statut',
                 'choices' => [
                     'Ouvert' => 'Ouvert',
                     'Fermé' => 'Fermé',
@@ -33,23 +35,24 @@ class TicketsType extends AbstractType
                     'class' => 'custom-form',
                 ],
             ])
-            ->add(
-                'content', TextareaType::class,
-                [
-                    'label' => 'Description',
-                    'attr' => [
-                        'rows' => '10',
-                        'class' => 'custom-form'
-                    ],
-                ]
-            )
+            ->add('content', TextareaType::class, [
+                'label' => 'Description',
+                'attr' => [
+                    'rows' => '10',
+                    'class' => 'custom-form'
+                ],
+            ])
             ->add('created_at')
-            ->add('user',EntityType::class, [
+
+            ->add('user', EntityType::class, [
+                'label' => 'Auteur',
                 'class' => User::class,
                 'choice_label' => function (User $user) {
-                    return $user->getFirstName() . ' ' . $user->getLastName(); },
-            ]
-            )
+                    return $user->getFirstName() . ' ' . $user->getLastName();},
+                'attr' => [
+                    'class' => 'custom-form'],
+            ])
+
             ->add('files', FileType::class, [
                 'label' => false,
                 'multiple' => true,

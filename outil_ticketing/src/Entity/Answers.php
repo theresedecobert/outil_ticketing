@@ -46,12 +46,15 @@ class Answers
         return $this;
     }
 
-    public function getResolveddAt(): ?\DateTimeImmutable
+
+    public function getResolvedAt(): ?\DateTimeImmutable
+
     {
         return $this->resolved_at;
     }
 
-    public function setResolveddAt(\DateTimeImmutable $resolved_at): static
+    public function setResolvedAt(\DateTimeImmutable $resolved_at): static
+
     {
         $this->resolved_at = $resolved_at;
 
