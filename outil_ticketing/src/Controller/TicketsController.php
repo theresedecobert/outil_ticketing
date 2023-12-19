@@ -34,6 +34,20 @@ class TicketsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            //on récupère les images
+            $files = $form->get('files')->getData();
+
+            foreach ($files as $file) {
+                // on définit le dossier de destination
+                $folder = 'tickets';
+                //on appelle le service d'ajout
+                $fichier = $pictureService->add($file, $folder, 300, 300);
+
+                $file = new Files();
+                $file->setFile($fichier);
+                $ticket->addFile($file);
+            } 
+
             $entityManager->persist($ticket);
             $entityManager->flush();
 
