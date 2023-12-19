@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Answers{% endblock %}
+{% block title %}Nouvelle réponse{% endblock %}
 
 {% block body %}
-    <h1>Create new Answers</h1>
+    <h1>Nouvelle réponse</h1>
 
     {{ include('answers/_form.html.twig') }}
 
-    <a href="{{ path('app_answers_index') }}">back to list</a>
+    <a href="{{ path('app_answers_index') }}">Retour</a>
 {% endblock %}

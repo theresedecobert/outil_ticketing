@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Answers{% endblock %}
+{% block title %}Modifier la réponse{% endblock %}
 
 {% block body %}
-    <h1>Edit Answers</h1>
+    <h1>Modifier la réponse</h1>
 
-    {{ include('answers/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('answers/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('app_answers_index') }}">back to list</a>
+    <a href="{{ path('app_answers_index') }}">Retour</a>
 
     {{ include('answers/_delete_form.html.twig') }}
 {% endblock %}
