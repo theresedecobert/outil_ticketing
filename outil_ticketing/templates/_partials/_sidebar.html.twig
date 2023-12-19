@@ -4,32 +4,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="sidebar">
+        <div class="collapse navbar-collapse" id="sidebarNav">
             <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
                 <button class="button" type="button"><a href="{{ path('app_tickets_new') }}"><i class="fa-solid fa-plus"></i> Nouveau ticket</a></button>
-                <nav class="navbar navbar-light bg-light">
-                    <div class="container-fluid">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Chercher un ticket" aria-label="Search">
-                            <button class="button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        </form>
-                    </div>
-                </nav>
+                {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('home') }}">
                         <i class="fa-solid fa-house"></i>
-                        Tableau de bord</a>
+                        Tickets en cours</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_tickets_index') }}">
                         <i class="fa-regular fa-square-check"></i>
                         Tickets résolus</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_user_index') }}">
                         <i class="fa-solid fa-user"></i>
                         Utilisateurs</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

@@ -19,31 +19,22 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, 
-            [
-                'label' => 'E-mail',
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
                 'attr' => [
                     'class' => 'custom-form'
                 ],
             ])
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom : ',
+                'label' => 'Prénom',
                 'attr' => [
                     'class' => 'custom-form',
                 ],
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom : ',
+                'label' => 'Nom',
                 'attr' => [
                     'class' => 'custom-form',
-                ],
-            ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
