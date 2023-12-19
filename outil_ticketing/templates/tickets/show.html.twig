@@ -1,38 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tickets{% endblock %}
+{% block title %}Ticket
+{% endblock %}
 
 {% block body %}
-    <h1>Tickets</h1>
+	<h1>Ticket</h1>
 
-    <table class="table-responsive">
-        <tbody>
-            <tr>
-                <th>Numéro de ticket</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ ticket.status }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ ticket.title }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ ticket.content }}</td>
-            </tr>
-            <tr>
-                <th>Date de création</th>
-                <td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table>
+		<tbody>
+			<tr>
+				<th>Numéro de ticket</th>
+				<td>{{ ticket.id }}</td>
+			</tr>
+			<tr>
+				<th>Statut</th>
+				<td>{{ ticket.status }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ ticket.title }}</td>
+			</tr>
+			<tr>
+				<th>Contenu</th>
+				<td>{{ ticket.content }}</td>
+			</tr>
+			<tr>
+				<th>Impressions écran</th>
+				<td>
+					{% for file in ticket.files %}
+						<a href="{{ asset('uploads/mini/', {'id': file.id}) }}">
+							{{ file.file }}
+						</a>
+						<br>
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<th>Date de création</th>
+				<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_tickets_index') }}">Retour</a>
+	<a href="{{ path('app_tickets_index') }}">Retour</a>
 
-    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">Modifier</a>
+	<a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">Modifier</a>
 
-    {{ include('tickets/_delete_form.html.twig') }}
+	{{ include('tickets/_delete_form.html.twig') }}
 {% endblock %}
