@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Files;
 use App\Entity\Tickets;
 use App\Form\TicketsType;
 use App\Service\pictureService;
