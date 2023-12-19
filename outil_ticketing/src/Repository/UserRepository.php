@@ -27,6 +27,22 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
+     * Trouve le meilleur technicien (celui qui a répondu au plus de tickets)
+     *
+     * @return User|null
+     */
+    public function findBestTechnician(): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.answers', 'a')
+            ->groupBy('u.id')
+            ->orderBy('COUNT(a.id)', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
