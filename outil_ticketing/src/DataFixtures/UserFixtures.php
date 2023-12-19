@@ -2,14 +2,15 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
 use Faker;
+use App\Entity\User;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture 
 {
      //hacher le mdp
      public function __construct(
@@ -31,7 +32,7 @@ class UserFixtures extends Fixture
 
         $faker = Faker\Factory::create('fr_FR'); //permet d'avoir d fausses données mais à la française
 
-        for($usr = 1; $usr <= 5; $usr++){
+        for($usr = 1; $usr <= 10; $usr++){
             $user = new User();
             $user->setEmail($faker->email);
             $user->setLastName($faker->lastName);
@@ -43,4 +44,6 @@ class UserFixtures extends Fixture
         }
         $manager->flush();
     }
+   
+
 }

@@ -41,6 +41,7 @@ class Tickets
     {
         $this->answers = new ArrayCollection();
         $this->files = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
