@@ -18,7 +18,7 @@ class Answers
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $resoluted_at = null;
+    private ?\DateTimeImmutable $resolved_at = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $docLink = null;
@@ -46,14 +46,14 @@ class Answers
         return $this;
     }
 
-    public function getResolutedAt(): ?\DateTimeImmutable
+    public function getResolvedAt(): ?\DateTimeImmutable
     {
-        return $this->resoluted_at;
+        return $this->resolved_at;
     }
 
-    public function setResolutedAt(\DateTimeImmutable $resoluted_at): static
+    public function setResolvedAt(\DateTimeImmutable $resolved_at): static
     {
-        $this->resoluted_at = $resoluted_at;
+        $this->resolved_at = $resolved_at;
 
         return $this;
     }

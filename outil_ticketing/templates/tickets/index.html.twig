@@ -1,48 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Index des tickets{% endblock %}
+{% block title %}Tickets résolus{% endblock %}
 
 {% block body %}
-    <h1>Tickets résolus</h1>
+	{% include "_partials/_header.html.twig" %}
+	<section class="row mr-3 ml-0">
+		{% include "_partials/_sidebar.html.twig" %}
 
-    <table class="table-responsive">
-        <thead>
-            <tr>
-                <th>Numéro de ticket</th>
-                <th>Auteur</th>
-                <th>Statut</th>
-                <th>Titre</th>
-                <th>Contenu</th>
-                <th>Date de création</th>
-                <th>Réponse</th>
-                <th>Auteur de la réponse</th>
-                <th>Lien de la doc</th>
-                <th>Date de résolution</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ticket in tickets %}
-        <!--DISPLAY ONLY CLOSED TICKETS-->
-        {% if ticket.status == 'Fermé' %}
-            <tr>
-                <td>{{ ticket.id }}</td>
-                <!--GETTING USER WHO HAS CREATED THE TICKET-->
-                <td>{{ ticket.user.firstName }} {{ ticket.user.lastName }}</td>
-                <td>{{ ticket.status }}</td>
-                <td>{{ ticket.title }}</td>
-                <td>{{ ticket.content }}</td>
-                <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d à H:i') : '' }}</td>
-                
-                {% for answer in answers %}
-                 <td>{{ answer.description }}</td>
-                <!--GETTING USER WHO HAS RESOLVED THE TICKET-->
-                <td>{{ answer.user.firstName }} {{ answer.user.lastName }}</td>
-                <td>{{ answer.docLink }}</td>
-                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('d-m-Y à H:i') : '' }}</td>
-                {% endfor %}
-            </tr>
-        {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+		<div class="col-md-10" id="dashboard">
+			<h1>Tickets résolus</h1>
+
+			<table class="table-responsive">
+				<thead>
+					<tr>
+						<th>Numéro de ticket</th>
+						<th>Auteur</th>
+						<th>Statut</th>
+						<th>Titre</th>
+						<th>Contenu</th>
+						<th>Date de création</th>
+						<th>Réponse</th>
+						<th>Auteur de la réponse</th>
+						<th>Lien de la doc</th>
+						<th>Date de résolution</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for ticket in tickets %}
+						<!--DISPLAY ONLY CLOSED TICKETS-->
+						{% if ticket.status == 'Fermé' %}
+							<tr>
+								<td>{{ ticket.id }}</td>
+								<!--GETTING USER WHO HAS CREATED THE TICKET-->
+								<td>{{ ticket.user.firstName }}
+									{{ ticket.user.lastName }}</td>
+								<td>{{ ticket.status }}</td>
+								<td>{{ ticket.title }}</td>
+								<td>{{ ticket.content }}</td>
+								<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+
+								{% for answer in answers %}
+									<td>{{ answer.description }}</td>
+									<!--GETTING USER WHO HAS RESOLVED THE TICKET-->
+									<td>{{ answer.user.firstName }}
+										{{ answer.user.lastName }}</td>
+									<td>{{ answer.docLink }}</td>
+									<td>{{ answer.resolvedAt ? answer.resolvedAt|date('d-m-Y à H:i') : '' }}</td>
+								{% endfor %}
+							</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+	{% include "_partials/_footer.html.twig" %}
 {% endblock %}
