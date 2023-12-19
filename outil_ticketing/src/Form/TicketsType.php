@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Tickets;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -42,6 +43,7 @@ class TicketsType extends AbstractType
                 ],
             ])
             ->add('created_at')
+
             ->add('user', EntityType::class, [
                 'label' => 'Auteur',
                 'class' => User::class,
@@ -50,6 +52,7 @@ class TicketsType extends AbstractType
                 'attr' => [
                     'class' => 'custom-form'],
             ])
+
             ->add('files', FileType::class, [
                 'label' => false,
                 'multiple' => true,

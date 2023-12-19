@@ -46,12 +46,15 @@ class Answers
         return $this;
     }
 
+
     public function getResolvedAt(): ?\DateTimeImmutable
+
     {
         return $this->resolved_at;
     }
 
     public function setResolvedAt(\DateTimeImmutable $resolved_at): static
+
     {
         $this->resolved_at = $resolved_at;
 
@@ -92,5 +95,10 @@ class Answers
         $this->ticket = $ticket;
 
         return $this;
+    }
+    public function __construct()
+    {
+      
+        $this->resolved_at = new \DateTimeImmutable();
     }
 }
