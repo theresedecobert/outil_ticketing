@@ -29,6 +29,10 @@ class AnswersController extends AbstractController
         // Assume you have a method to find the ticket by ID in your repository
         $ticket = $entityManager->getRepository(Tickets::class)->find($id);
 
+        if (!$ticket) {
+            throw $this->createNotFoundException('Ticket not found');
+        }
+
         $answer = new Answers();
         $answer->setTicket($ticket);  // Associate the answer with the ticket
         $form = $this->createForm(AnswersType::class, $answer);
