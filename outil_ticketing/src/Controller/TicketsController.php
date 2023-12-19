@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Files;
 use App\Entity\Tickets;
 use App\Form\TicketsType;
 use App\Service\pictureService;
-use App\Repository\UserRepository;
-use App\Repository\AnswersRepository;
 use App\Repository\TicketsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
