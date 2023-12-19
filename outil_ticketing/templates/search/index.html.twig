@@ -3,20 +3,22 @@
 {% block title %}Recherche{% endblock %}
 
 {% block body %}
-{% if app.request.method == 'POST' %}
-    <div>
-        {% if tickets is defined and tickets | length > 0 %}
-            <p>Aucun résulat pour votre recherche</p>
-           {% else %}
-               <h1 class="mt-3">Vos résulats de recherche :</h1>
-               {% for ticket in tickets %}
-                   <div class="mt-3 p-3 bg-light border rounded">
-                       <a href="{{ path('app_tickets_show', {'slug': ticket.slug}) }}">
-                              <p class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ ticket.title }}</p>
-                       </a>
-                   </div>
-              {% endfor %}
-          {% endif %}
-     </div>
-{% endif %}
+	{% if app.request.method == 'POST' %}
+		<div>
+			<h1 class="mt-3">Vos résultats de recherche :</h1>
+			{% if tickets is defined and tickets | length > 0 %}
+				{% for ticket in tickets %}
+					<div class="mt-3 p-3 bg-light border rounded">
+						<a href="{{ path('app_tickets_show', {'slug': ticket.slug}) }}">
+							<p class="text-dark">
+								<i class="bi bi-arrow-down-right-square-fill text-primary"></i>
+								{{ ticket.title }}</p>
+						</a>
+					</div>
+				{% endfor %}
+			{% else %}
+				<p>Aucun résultat pour votre recherche</p>
+			{% endif %}
+		</div>
+	{% endif %}
 {% endblock %}

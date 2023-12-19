@@ -32,8 +32,7 @@
 							<tr>
 								<td>{{ ticket.id }}</td>
 								<!--GETTING USER WHO HAS CREATED THE TICKET-->
-								<td>{{ ticket.user.firstName }}
-									{{ ticket.user.lastName }}</td>
+								<td>{{ ticket.user.firstName }}{{ ticket.user.lastName }}</td>
 								<td>{{ ticket.status }}</td>
 								<td>{{ ticket.title }}</td>
 								<td>{{ ticket.content }}</td>
@@ -42,8 +41,7 @@
 								{% for answer in answers %}
 									<td>{{ answer.description }}</td>
 									<!--GETTING USER WHO HAS RESOLVED THE TICKET-->
-									<td>{{ answer.user.firstName }}
-										{{ answer.user.lastName }}</td>
+									<td>{{ answer.user.firstName }}{{ answer.user.lastName }}</td>
 									<td>{{ answer.docLink }}</td>
 									<td>{{ answer.resolvedAt ? answer.resolvedAt|date('d-m-Y à H:i') : '' }}</td>
 								{% endfor %}

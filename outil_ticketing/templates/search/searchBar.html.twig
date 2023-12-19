@@ -1,1 +1,11 @@
-{{ form(form) }}
+{{ form_start(form) }}
+<div class="input-group">
+    {{ form_widget(form.query, {'attr': {'class': 'form-control', 'placeholder': 'Chercher un ticket'}}) }}
+    <div class="input-group-append">
+        <button type="submit" style="display: none;" id="search-form-submit"></button>
+        <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('search-form-submit').click();">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+</div>
+{{ form_end(form) }}
