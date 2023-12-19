@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Answers;
+use App\Entity\Tickets;
 use App\Form\AnswersType;
 use App\Repository\AnswersRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/answers')]
 class AnswersController extends AbstractController
@@ -22,10 +23,14 @@ class AnswersController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_answers_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new/{id}', name: 'app_answers_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
+        // Assume you have a method to find the ticket by ID in your repository
+        $ticket = $entityManager->getRepository(Tickets::class)->find($id);
+
         $answer = new Answers();
+        $answer->setTicket($ticket);  // Associate the answer with the ticket
         $form = $this->createForm(AnswersType::class, $answer);
         $form->handleRequest($request);
 
@@ -41,6 +46,7 @@ class AnswersController extends AbstractController
             'form' => $form,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_answers_show', methods: ['GET'])]
     public function show(Answers $answer): Response
@@ -71,7 +77,7 @@ class AnswersController extends AbstractController
     #[Route('/{id}', name: 'app_answers_delete', methods: ['POST'])]
     public function delete(Request $request, Answers $answer, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$answer->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $answer->getId(), $request->request->get('_token'))) {
             $entityManager->remove($answer);
             $entityManager->flush();
         }

@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Answers index{% endblock %}
+{% block title %}Index des réponses{% endblock %}
 
 {% block body %}
-    <h1>Answers index</h1>
+    <h1>Index des réponses</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Resoluted_at</th>
-                <th>DocLink</th>
-                <th>actions</th>
+                <th>Numéro de réponse</th>
+                <th>Réponse</th>
+                <th>Date de résolution</th>
+                <th>Lien de la doc</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,20 +20,20 @@
             <tr>
                 <td>{{ answer.id }}</td>
                 <td>{{ answer.description }}</td>
-                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('d-m-Y à H:i') : '' }}</td>
                 <td>{{ answer.docLink }}</td>
                 <td>
-                    <a href="{{ path('app_answers_show', {'id': answer.id}) }}">show</a>
-                    <a href="{{ path('app_answers_edit', {'id': answer.id}) }}">edit</a>
+                    <a href="{{ path('app_answers_show', {'id': answer.id}) }}">Afficher</a>
+                    <a href="{{ path('app_answers_edit', {'id': answer.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Donnée vide</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_answers_new') }}">Create new</a>
+    <a href="{{ path('app_answers_new') }}">Nouvelle réponse</a>
 {% endblock %}

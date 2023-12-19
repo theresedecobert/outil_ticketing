@@ -1,41 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tickets index{% endblock %}
+{% block title %}Index des tickets{% endblock %}
 
 {% block body %}
-    <h1>Tickets index</h1>
+    <h1>Tickets résolus</h1>
 
-    <table class="table">
+    <table class="table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Status</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Created_at</th>
-                <th>actions</th>
+                <th>Numéro de ticket</th>
+                <th>Auteur</th>
+                <th>Statut</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Date de création</th>
+                <th>Réponse</th>
+                <th>Auteur de la réponse</th>
+                <th>Lien de la doc</th>
+                <th>Date de résolution</th>
             </tr>
         </thead>
         <tbody>
         {% for ticket in tickets %}
+        <!--DISPLAY ONLY CLOSED TICKETS-->
+        {% if ticket.status == 'Fermé' %}
             <tr>
                 <td>{{ ticket.id }}</td>
+                <!--GETTING USER WHO HAS CREATED THE TICKET-->
+                <td>{{ ticket.user.firstName }} {{ ticket.user.lastName }}</td>
                 <td>{{ ticket.status }}</td>
                 <td>{{ ticket.title }}</td>
                 <td>{{ ticket.content }}</td>
-                <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">show</a>
-                    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">edit</a>
-                </td>
+                <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d à H:i') : '' }}</td>
+                
+                {% for answer in answers %}
+                 <td>{{ answer.description }}</td>
+                <!--GETTING USER WHO HAS RESOLVED THE TICKET-->
+                <td>{{ answer.user.firstName }} {{ answer.user.lastName }}</td>
+                <td>{{ answer.docLink }}</td>
+                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('d-m-Y à H:i') : '' }}</td>
+                {% endfor %}
             </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
+        {% endif %}
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_tickets_new') }}">Create new</a>
 {% endblock %}

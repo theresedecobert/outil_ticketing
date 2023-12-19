@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Answers{% endblock %}
+{% block title %}Réponses{% endblock %}
 
 {% block body %}
-    <h1>Answers</h1>
+    <h1>Réponses</h1>
 
-    <table class="table">
+    <table class="table-responsive">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Numéro de réponse</th>
                 <td>{{ answer.id }}</td>
             </tr>
             <tr>
@@ -16,19 +16,19 @@
                 <td>{{ answer.description }}</td>
             </tr>
             <tr>
-                <th>Resoluted_at</th>
-                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de résolution</th>
+                <td>{{ answer.resolutedAt ? answer.resolutedAt|date('d-m-Y à H:i') : '' }}</td>
             </tr>
             <tr>
-                <th>DocLink</th>
+                <th>Lien vers la doc</th>
                 <td>{{ answer.docLink }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_answers_index') }}">back to list</a>
+    <a href="{{ path('app_answers_index') }}">Retour</a>
 
-    <a href="{{ path('app_answers_edit', {'id': answer.id}) }}">edit</a>
+    <a href="{{ path('app_answers_edit', {'id': answer.id}) }}">Modifier</a>
 
     {{ include('answers/_delete_form.html.twig') }}
 {% endblock %}
