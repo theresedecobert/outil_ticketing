@@ -31,25 +31,21 @@ class SearchController extends AbstractController
                     'placeholder' => 'Chercher un ticket'
                 ]
             ])
-            ->add('recherche', SubmitType::class, [
-                'attr' => [
-                    'class' => 'button'
-                ]
-            ])
             ->getForm();
+
         return $this->render('search/searchBar.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
-     /**
+    /**
      * @Route("/handleSearch", name="handleSearch")
      * @param Request $request
      */
     public function handleSearch(Request $request, TicketsRepository $repo)
     {
         $query = $request->request->all('form')['query'];
-        if($query) {
+        if ($query) {
             $tickets = $repo->findTicketsByName($query);
         }
         return $this->render('search/index.html.twig', [

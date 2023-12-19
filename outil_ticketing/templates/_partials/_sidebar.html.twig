@@ -1,31 +1,31 @@
-<aside class="col-md-2 pr-0 h-100">
-    <nav class="navbar navbar-expand-md flex-md-column flex-row align-items-start navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Menu pour mobile">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="sidebarNav">
-            <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                <button class="button" type="button"><a href="{{ path('app_tickets_new') }}"><i class="fa-solid fa-plus"></i> Nouveau ticket</a></button>
+<aside class="col-md-2 p-0 h-100">
+    <nav class="navbar navbar-expand-md flex-md-column flex-row align-items-start navbar-dark bg-dark" id="sidebar">
+        <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+            <li class="nav-item mt-3 mb-3">
+                <a class="nav-link" href="{{ path('app_tickets_new') }}">
+                    <i class="fa-solid fa-plus"></i>
+                    Nouveau ticket</a>
+            </li>
+            <div class="searchBar mb-3">
                 {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('home') }}">
-                        <i class="fa-solid fa-house"></i>
-                        Tickets en cours</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_tickets_index') }}">
-                        <i class="fa-regular fa-square-check"></i>
-                        Tickets résolus</a>
-                </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
+            </div>
+            <li class="nav-item mb-3">
+                <a class="nav-link" href="{{ path('home') }}">
+                    <i class="fa-solid fa-house"></i>
+                    Tickets en cours</a>
+            </li>
+            <li class="nav-item mb-3">
+                <a class="nav-link" href="{{ path('app_tickets_index') }}">
+                    <i class="fa-regular fa-square-check"></i>
+                    Tickets résolus</a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item mb-3">
                     <a class="nav-link" href="{{ path('app_user_index') }}">
                         <i class="fa-solid fa-user"></i>
                         Utilisateurs</a>
                 </li>
-                {% endif %}
-            </ul>
-        </div>
+            {% endif %}
+        </ul>
     </nav>
 </aside>
