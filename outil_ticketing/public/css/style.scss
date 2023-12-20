@@ -142,7 +142,7 @@ footer {
 
             .each-ticket {
                 width: 300px;
-                height: 420px;
+                height: 500px;
                 background-color: white;
                 box-shadow: $lightblue 0px 0px 8px 2px;
                 margin: 30px;
@@ -160,8 +160,21 @@ footer {
                 margin-bottom: 20px;
             }
 
-            .actions {
-                display: flex;
+            .statusBtn {
+                color: $lightgrey;
+                padding: 10px 20px;
+                border-radius: 10px;
+                border: none;
+                margin-bottom: 20px;
+                font-family: 'Montserrat', sans-serif;
+            }
+            
+            .statusBtn.open {
+                background-color: red;
+            }
+            
+            .statusBtn.closed {
+                background-color: green;
             }
 
             i {
