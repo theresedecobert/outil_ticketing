@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tickets')]
@@ -79,6 +80,7 @@ class TicketsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tickets_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tickets $ticket, EntityManagerInterface $entityManager, Security $security): Response
     {
+
         // Récupérez l'utilisateur connecté
         $user = $security->getUser();
 
@@ -92,6 +94,7 @@ class TicketsController extends AbstractController
             'is_admin' => $isAdmin,
             'is_author' => $isAuthor,
         ]);
+
 
         $form->handleRequest($request);
 
@@ -117,4 +120,6 @@ class TicketsController extends AbstractController
 
         return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
+
+   
 }

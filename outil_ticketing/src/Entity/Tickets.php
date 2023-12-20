@@ -123,6 +123,7 @@ class Tickets
         if (!$this->answers->contains($answer)) {
             $this->answers->add($answer);
             $answer->setTicket($this);
+            
         }
 
         return $this;
