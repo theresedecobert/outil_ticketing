@@ -31,7 +31,7 @@ class Tickets
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answers::class)]
+    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answers::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $answers;
 
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Files::class, orphanRemoval: true, cascade: ['persist'])]
