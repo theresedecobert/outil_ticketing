@@ -20,7 +20,8 @@
 				<div class="bestTech">
 					<div class="rank">
 						{% if bestTechnician %}
-							{{ bestTechnician.firstName }} {{ bestTechnician.lastName }}{% else %}Aucun technicien trouvé
+							{{ bestTechnician.firstName }}
+							{{ bestTechnician.lastName }}{% else %}Aucun technicien trouvé
 						{% endif %}
 					</div>
 					Best tech !
@@ -28,56 +29,35 @@
 			</div>
 
 			<!--DASHBOARD OF OPENED TICKETS-->
-
-			<table>
-				<thead>
-					<tr>
-						<th>Ticket</th>
-						<th>Auteur</th>
-						<th>Statut</th>
-						<th>Titre</th>
-						<th>Créé le</th>
-						<th>Modifier</th>
-						<th>Afficher</th>
-						<th>Répondre</th>
-					</tr>
-				</thead>
-				<tbody>
+			<section id="openedTickets">
+				<div class="all-tickets">
 					{% for ticket in tickets %}
-						<!--DISPLAY ONLY OPENED TICKETS-->
-						{% if ticket.status == 'ouvert' %}
-							<tr>
-								<td>{{ ticket.id }}</td>
-								<!--GETTING USER WHO HAS CREATED THE TICKET-->
-								<td>{{ ticket.user.firstName }}
-									{{ ticket.user.lastName }}</td>
-								<td>{{ ticket.status }}</td>
-								<td>{{ ticket.title }}</td>
-								<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
-								<td>
-									{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
-										<a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">
-											<i class="fa-solid fa-pencil"></i>
-										</a>
-									{% endif %}
-								</td>
-								<td>
-									<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
-										<i class="fa-solid fa-magnifying-glass-plus"></i>
+						<div class="each-ticket">
+							{% for file in ticket.files %}
+								<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
+							{% endfor %}
+							<p>Auteur :
+								{{ ticket.user.firstName }}
+								{{ ticket.user.lastName }}</p>
+							<p>Statut :
+								{{ ticket.status }}</p>
+							<p>Titre :
+								{{ ticket.title }}</p>
+							<small>Créé le
+								{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</small>
+							<div class="actions">
+								{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
+									<a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">
+										<i class="fa-solid fa-pencil"></i>
 									</a>
-								</td>
-								<td>
-									<a href="{{ path('app_answers_new', {'id': ticket.id}) }}">
-										<i class="fa-regular fa-comment-dots"></i>
-									</a>
-								</td>
-							</tr>
-						{% endif %}
+								{% endif %}
+								<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
+									<i class="fa-solid fa-magnifying-glass-plus"></i>
+								</a>
+							</div>
+						</div>
 					{% endfor %}
-				</tbody>
-			</table>
-
-		</div>
-	</section>
-	{% include "_partials/_footer.html.twig" %}
-{% endblock %}
+				</div>
+			</section>
+			{% include "_partials/_footer.html.twig" %}
+		{% endblock %}
