@@ -56,7 +56,6 @@ footer {
   color: #F7F7F7;
   padding-right: 30px;
   width: 100%;
-  margin: 0;
 }
 footer img {
   height: 80px;
@@ -130,10 +129,11 @@ footer img {
 }
 #dashboard #openedTickets .all-tickets .each-ticket {
   width: 300px;
-  height: 500px;
+  height: 420px;
   background-color: white;
   box-shadow: #6777B0 0px 0px 8px 2px;
-  margin: 40px;
+  margin: 30px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -143,7 +143,7 @@ footer img {
 #dashboard #openedTickets .all-tickets img {
   width: 250px;
   height: 180px;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 #dashboard #openedTickets .all-tickets .actions {
   display: flex;
@@ -151,4 +151,6 @@ footer img {
 #dashboard #openedTickets .all-tickets i {
   margin: 10px;
   color: #2E5597;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*************** TICKETS RESOLVED***************//*# sourceMappingURL=style.css.map */
