@@ -44,7 +44,7 @@ class Tickets
         $this->answers = new ArrayCollection();
         $this->files = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
-        $this->status = 'ouvert';
+        $this->status = 'Ouvert';
     }
 
     public function getId(): ?int
