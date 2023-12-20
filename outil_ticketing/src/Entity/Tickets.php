@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\TicketsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Files;
+use App\Entity\Answers;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TicketsRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: TicketsRepository::class)]
 class Tickets
@@ -31,7 +33,7 @@ class Tickets
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answers::class)]
+    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Answers::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $answers;
 
     #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Files::class, orphanRemoval: true, cascade: ['persist'])]

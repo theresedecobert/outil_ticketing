@@ -14,11 +14,6 @@
                     <i class="fa-solid fa-house"></i>
                     Tickets en cours</a>
             </li>
-            <li class="nav-item mb-3">
-                <a class="nav-link" href="{{ path('app_tickets_index') }}">
-                    <i class="fa-regular fa-square-check"></i>
-                    Tickets résolus</a>
-            </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item mb-3">
                     <a class="nav-link" href="{{ path('app_user_index') }}">
