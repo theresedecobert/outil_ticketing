@@ -14,16 +14,11 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Ticket</th>
 						<th>Auteur</th>
 						<th>Statut</th>
 						<th>Titre</th>
 						<th>Contenu</th>
 						<th>Créé le</th>
-						<th>Réponse</th>
-						<th>Tech</th>
-						<th>Lien doc</th>
-						<th>Répondu le</th>
 						<th>Réponse</th>
 						<th>Tech</th>
 						<th>Lien doc</th>
@@ -35,7 +30,6 @@
 						<!--DISPLAY ONLY CLOSED TICKETS-->
 						{% if ticket.status == 'fermé' %}
 							<tr>
-								<td>{{ ticket.id }}</td>
 								<!--GETTING USER WHO HAS CREATED THE TICKET-->
 								<td>{{ ticket.user.firstName }}
 									{{ ticket.user.lastName }}</td>

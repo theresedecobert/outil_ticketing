@@ -9,7 +9,6 @@
 			{% if tickets is defined and tickets | length > 0 %}
 				{% for ticket in tickets %}
 					<div class="mt-3 p-3 bg-light border rounded">
-						<a href="{{ path('app_tickets_show', {'slug': ticket.slug}) }}">
 							<p class="text-dark">
 								<i class="bi bi-arrow-down-right-square-fill text-primary"></i>
 								{{ ticket.title }}</p>

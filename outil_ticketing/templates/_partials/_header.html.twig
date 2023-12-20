@@ -1,5 +1,8 @@
 <header>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark d-flex justify-content-end">
+			{% if app.user %}
+				<p class="mt-3 mr-3">Bienvenue {{ app.user.firstName }} {{ app.user.lastName }}</p>
+			{% endif %}
 		<a class="nav-link" href="https://discord.com/channels/1125364671491362858/1153242082673172480" target="_blank">
 			<i class="fa-brands fa-discord"></i></a>
 
