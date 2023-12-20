@@ -1,5 +1,5 @@
-
-    document.getElementById('editButton').addEventListener('click', function() {
-        var editForm = document.getElementById('editForm');
-        editForm.style.display = editForm.style.display === "none" ? "block" : "none";
-    });
+// Animation to display edit form on show page
+document.getElementById('editButton').addEventListener('click', function() {
+    var editForm = document.getElementById('editForm');
+    editForm.style.display = editForm.style.display === "none" ? "block" : "none";
+});
