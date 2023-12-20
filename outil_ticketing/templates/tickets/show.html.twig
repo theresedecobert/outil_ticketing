@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ticket{% endblock %}
+{% block title %}Ticket
+{% endblock %}
 {% block body %}
 	<h1>Ticket</h1>
 	<table>
@@ -35,22 +36,38 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="{{ path('app_answers_new', {'id': ticket.id}) }}">
-		<i class="fa-regular fa-comment-dots"></i>
-	</a>
-	<a href="{{ path('home') }}">Retour</a>
 
 	<!--EDIT-->
+	<button id="editButton" class="btn">
+		<i class="fa-solid fa-pencil"></i>
+	</button>
 	{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
 		<div id="editForm" style="display: none;">
 			{{ form_start(edit_form) }}
 			{{ form_widget(edit_form) }}
-			<button type="submit">Sauvegarder les modifications</button>
+			<button type="submit" class="btn">
+				<i class="fa-solid fa-check"></i>
+			</button>
 			{{ form_end(edit_form) }}
 		</div>
-		<button id="editButton">
-			<i class="fa-solid fa-pencil"></i>
-		</button>
 	{% endif %}
+
+	<!--ANSWER-->
+	<button id="answerButton" class="btn">
+		<i class="fa-regular fa-comment-dots"></i>
+	</button>
+	<div id="answerForm" style="display: none;">
+		{{ form_start(answerForm) }}
+		{{ form_widget(answerForm) }}
+		<button type="submit" class="btn">
+			<i class="fa-solid fa-check"></i>
+		</button>
+		{{ form_end((answerForm)) }}
+	</div>
+
+	<!--DELETE-->
 	{{ include('tickets/_delete_form.html.twig') }}
+
+	<!--GOING BACK-->
+	<a href="{{ path('home') }}" class="button">Retour</a>
 {% endblock %}

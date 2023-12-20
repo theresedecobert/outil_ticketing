@@ -7,10 +7,12 @@ use App\Repository\AnswersRepository;
 use App\Repository\TicketsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'home')]
     public function index(TicketsRepository $ticketsRepository, AnswersRepository $answersRepository, UserRepository $userRepository): Response
     {
