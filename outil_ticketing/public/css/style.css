@@ -129,7 +129,7 @@ footer img {
 }
 #dashboard #openedTickets .all-tickets .each-ticket {
   width: 300px;
-  height: 420px;
+  height: 500px;
   background-color: white;
   box-shadow: #6777B0 0px 0px 8px 2px;
   margin: 30px;
@@ -145,8 +145,19 @@ footer img {
   height: 180px;
   margin-bottom: 20px;
 }
-#dashboard #openedTickets .all-tickets .actions {
-  display: flex;
+#dashboard #openedTickets .all-tickets .statusBtn {
+  color: #F7F7F7;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+#dashboard #openedTickets .all-tickets .statusBtn.open {
+  background-color: red;
+}
+#dashboard #openedTickets .all-tickets .statusBtn.closed {
+  background-color: green;
 }
 #dashboard #openedTickets .all-tickets i {
   margin: 10px;
