@@ -20,7 +20,14 @@ class TicketsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Tickets::class);
     }
-
+    // Display tickets in descending order
+    public function findAllOrderedByDateDesc()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.created_at', 'DESC') 
+            ->getQuery()
+            ->getResult();
+    }
     // Find/search articles by title/content
     public function findTicketsByName(string $query)
     {
@@ -35,35 +42,34 @@ class TicketsRepository extends ServiceEntityRepository
                     $qb->expr()->isNotNull('p.created_at')
                 )
             )
-            ->setParameter('query', '%' . $query . '%')
-        ;
+            ->setParameter('query', '%' . $query . '%');
         return $qb
             ->getQuery()
             ->getResult();
     }
 
-//    /**
-//     * @return Tickets[] Returns an array of Tickets objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Tickets[] Returns an array of Tickets objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('t.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Tickets
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Tickets
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

@@ -37,37 +37,41 @@
 		</tbody>
 	</table>
   
-	<!--EDIT-->
-	<button id="editButton" class="btn">
-		<i class="fa-solid fa-pencil"></i>
-	</button>
-	{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
-		<div id="editForm" style="display: none;">
-			{{ form_start(edit_form) }}
-			{{ form_widget(edit_form) }}
-			<button type="submit" class="btn">
-				<i class="fa-solid fa-check"></i>
-			</button>
-			{{ form_end(edit_form) }}
-		</div>
-	{% endif %}
+	<div class="actions">
+        <!--EDIT-->
+        <button id="editButton" class="btn">
+            <i class="fa-solid fa-pencil"></i>
+        </button>
+        <!--ANSWER-->
+        <button id="answerButton" class="btn">
+            <i class="fa-regular fa-comment-dots"></i>
+        </button>
+        <!--DELETE-->
+        {{ include('tickets/_delete_form.html.twig') }}
+    </div>
 
-	<!--ANSWER-->
-	<button id="answerButton" class="btn">
-		<i class="fa-regular fa-comment-dots"></i>
-	</button>
-	<div id="answerForm" style="display: none;">
-		{{ form_start(answerForm) }}
-		{{ form_widget(answerForm) }}
-		<button type="submit" class="btn">
-			<i class="fa-solid fa-check"></i>
-		</button>
-		{{ form_end((answerForm)) }}
-	</div>
+    <!--EDIT-->
+    {% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
+        <div id="editForm" style="display: none;">
+            {{ form_start(editForm) }}
+            {{ form_widget(editForm) }}
+            <button type="submit" class="btn">
+                <i class="fa-solid fa-check"></i>
+            </button>
+            {{ form_end(editForm) }}
+        </div>
+    {% endif %}
 
-	<!--DELETE-->
-	{{ include('tickets/_delete_form.html.twig') }}
+    <!--ANSWER-->
+    <div id="answerForm" style="display: none;">
+        {{ form_start(answerForm) }}
+        {{ form_widget(answerForm) }}
+        <button type="submit" class="btn">
+            <i class="fa-solid fa-check"></i>
+        </button>
+        {{ form_end((answerForm)) }}
+    </div>
 
-	<!--GOING BACK-->
-	<a href="{{ path('home') }}" class="button">Retour</a>
+    <!--GOING BACK-->
+    <a href="{{ path('home') }}" class="button">Retour</a>
 {% endblock %}
