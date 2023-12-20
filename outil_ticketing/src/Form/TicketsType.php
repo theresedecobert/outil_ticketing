@@ -19,15 +19,17 @@ class TicketsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $isAuthor = $options['is_author'];
+
         $builder
             ->add('status', ChoiceType::class, [
                 'label' => 'Statut',
                 'choices' => [
-                    'Ouvert' => 'Ouvert',
-                    'Fermé' => 'Fermé',
+                    'ouvert' => 'ouvert',
+                    'fermé' => 'fermé',
                 ],
-                'multiple' => true,
-                'expanded' => true,
+                'expanded' => true, // To use radio buttons
+                'disabled' => !$isAuthor && !$options['is_admin'], // Unable only admin or author to edit the status
             ])
             ->add('title', TextType::class, [
                 'label' => 'Titre',
@@ -43,16 +45,6 @@ class TicketsType extends AbstractType
                 ],
             ])
             ->add('created_at')
-
-            ->add('user', EntityType::class, [
-                'label' => 'Auteur',
-                'class' => User::class,
-                'choice_label' => function (User $user) {
-                    return $user->getFirstName() . ' ' . $user->getLastName();},
-                'attr' => [
-                    'class' => 'custom-form'],
-            ])
-
             ->add('files', FileType::class, [
                 'label' => false,
                 'multiple' => true,
@@ -65,6 +57,8 @@ class TicketsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Tickets::class,
+            'is_admin' => false,
+            'is_author' => false,
         ]);
     }
 }

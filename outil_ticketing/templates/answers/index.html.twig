@@ -23,7 +23,6 @@
                 <td>{{ answer.resolvedAt ? answer.resolvedAt|date('d-m-Y à H:i') : '' }}</td>
                 <td>{{ answer.docLink }}</td>
                 <td>
-                    <a href="{{ path('app_answers_show', {'id': answer.id}) }}">Afficher</a>
                     <a href="{{ path('app_answers_edit', {'id': answer.id}) }}">Modifier</a>
                 </td>
             </tr>
@@ -34,6 +33,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_answers_new') }}">Nouvelle réponse</a>
 {% endblock %}
