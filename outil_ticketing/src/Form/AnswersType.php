@@ -22,7 +22,6 @@ class AnswersType extends AbstractType
                     'rows' => '10',
                     'class' => 'custom-form'],
             ])
-            ->add('resolved_at')
             ->add('docLink', TextType::class, [
                 'label' => 'Lien de la doc',
                 'attr' => [

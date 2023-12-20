@@ -39,7 +39,7 @@ class TicketsController extends AbstractController
         $ticket->setUser($user);
 
         // Set the status on open
-        $ticket->setStatus('ouvert');
+        $ticket->setStatus('Ouvert');
 
         $form = $this->createForm(TicketsType::class, $ticket);
         $form->handleRequest($request);
