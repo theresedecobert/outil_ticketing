@@ -4,29 +4,29 @@
 {% endblock %}
 
 {% block body %}
-    {% include "_partials/_header.html.twig" %}
-    <section class="row m-0">
-        {% include "_partials/_sidebar.html.twig" %}
+	{% include "_partials/_header.html.twig" %}
+	<section class="row m-0">
+		{% include "_partials/_sidebar.html.twig" %}
 
-        <div class="col-md-10 m-0" id="dashboard">
-            <h1>Tableau de bord</h1>
+		<div class="col-md-10 m-0" id="dashboard">
+			<h1>Tableau de bord</h1>
 
-            <!--RANKINGS OF TICKETS AND BEST TECHNICIEN-->
-            <div class="ranking">
-                <div class="openedTickets">
-                    <div class="rank">{{ openedTicketsCount }}</div>Tickets en cours</div>
-                <div class="closedTickets">
-                    <div class="rank">{{ closedTicketsCount }}</div>Tickets résolus</div>
-                <div class="bestTech">
-                    <div class="rank">
-                        {% if bestTechnician %}
-                            {{ bestTechnician.firstName }}
-                            {{ bestTechnician.lastName }}{% else %}Aucun technicien trouvé
-                        {% endif %}
-                    </div>
-                    Best tech !
-                </div>
-            </div>
+			<!--RANKINGS OF TICKETS AND BEST TECHNICIEN-->
+			<div class="ranking">
+				<div class="openedTickets">
+					<div class="rank">{{ openedTicketsCount }}</div>Tickets en cours</div>
+				<div class="closedTickets">
+					<div class="rank">{{ closedTicketsCount }}</div>Tickets résolus</div>
+				<div class="bestTech">
+					<div class="rank">
+						{% if bestTechnician %}
+							{{ bestTechnician.firstName }}
+							{{ bestTechnician.lastName }}{% else %}Aucun technicien trouvé
+						{% endif %}
+					</div>
+					Best tech !
+				</div>
+			</div>
 
 			<!--DASHBOARD OF OPENED TICKETS-->
 			<section id="openedTickets">

@@ -19,13 +19,13 @@ class MainController extends AbstractController
         // Comptage du nombre de tickets ouverts et fermés
         $openedTicketsCount = $ticketsRepository->countByStatus('Ouvert');
         $closedTicketsCount = $ticketsRepository->countByStatus('Fermé');
-    
+
         // Recherche du meilleur technicien (celui qui a répondu au plus de tickets)
         $bestTechnician = $userRepository->findBestTechnician();
-    
+      
         // Récupération des tickets du plus récent au plus ancien
         $tickets = $ticketsRepository->findAllOrderedByDateDesc();
-    
+      
         return $this->render('main/index.html.twig', [
             'tickets' => $tickets, // Utilisation de la liste des tickets triée par date
             'answers' => $answersRepository->findAll(),

@@ -49,26 +49,6 @@ a:hover {
     box-shadow: $blue 1px 0 5px;
 }
 
-.custom-form {
-    background-color: $lightgrey;
-    opacity: 0.7;
-    border: 1px solid $lightgrey;
-    border-radius: 5px;
-    margin-bottom: 40px;
-    display: block;
-    width: 300px;
-    padding: 10px;
-}
-
-input#tickets_status_0, input#tickets_status_1 {
-    margin: 0 5px 0 20px;
-}
-
-#form_query {
-    height: 43px;
-    margin-top: 11px;
-}
-
 /*************** PARTIALS ***************/
 header {
 
@@ -94,6 +74,11 @@ footer {
 
 #sidebar {
     height: 100%;
+}
+
+#form_query {
+    height: 43px;
+    margin-top: 11px;
 }
 
 /*************** INDEX ***************/
@@ -209,3 +194,23 @@ footer {
     }
 }
 
+input#tickets_status_0, input#tickets_status_1 {
+    margin: 0 5px 0 20px;
+}
+
+.custom-form {
+    background-color: $lightgrey;
+    opacity: 0.7;
+    border: 1px solid $lightgrey;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    display: block;
+    width: 300px;
+    padding: 10px;
+}
+
+/*************** SHOW ***************/
+.actions {
+    display: flex;
+    margin: 20px;
+}
