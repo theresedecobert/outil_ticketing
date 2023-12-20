@@ -66,12 +66,11 @@ footer {
 }
 
 #sidebar {
-    height: 85vh;
+    height: 100%;
 }
 
 /*************** INDEX ***************/
 #dashboard {
-    height: 85vh;
     background-color: $lightgrey;
 
     h1 {
@@ -81,7 +80,7 @@ footer {
 
     .ranking {
         display: flex;
-        margin: 30px 0;
+        margin: 40px 0;
 
         .openedTickets {
             height: 100px;
@@ -144,6 +143,7 @@ footer {
     }
 
     th {
-        border-bottom: 1px solid $lightblue;
+        border-bottom: 1px solid $lightgrey;
+        font-size: larger;
     }
 }

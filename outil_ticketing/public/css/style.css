@@ -1,7 +1,7 @@
 /*************** GLOBAL ***************/
 h1 {
   font-family: "Montserrat", sans-serif;
-  font-size: 40px;
+  font-size: 50px;
   text-align: center;
   color: #2E5597;
 }
@@ -60,12 +60,11 @@ footer img {
 }
 
 #sidebar {
-  height: 85vh;
+  height: 100%;
 }
 
 /*************** INDEX ***************/
 #dashboard {
-  height: 85vh;
   background-color: #F7F7F7;
 }
 #dashboard h1 {
@@ -74,7 +73,7 @@ footer img {
 }
 #dashboard .ranking {
   display: flex;
-  margin: 30px 0;
+  margin: 40px 0;
 }
 #dashboard .ranking .openedTickets {
   height: 100px;
@@ -131,5 +130,6 @@ footer img {
   text-align: left;
 }
 #dashboard th {
-  border-bottom: 1px solid #6777B0;
+  border-bottom: 1px solid #F7F7F7;
+  font-size: larger;
 }/*# sourceMappingURL=style.css.map */
