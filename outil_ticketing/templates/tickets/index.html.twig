@@ -14,9 +14,8 @@
 			<table>
 				<thead>
 					<tr>
-						
-						<th>Prénom</th>
-						<th>Nom</th>
+						<th>Auteur</th>
+						<th>Statut</th>
 						<th>Titre</th>
 						<th>Contenu</th>
 						<th>Créé le</th>
@@ -24,9 +23,6 @@
 						<th>Tech</th>
 						<th>Lien doc</th>
 						<th>Répondu le</th>
-						<th>Réponse</th>
-						<th>Tech</th>
-						<th>Lien doc</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -34,14 +30,12 @@
 						<!--DISPLAY ONLY CLOSED TICKETS-->
 						{% if ticket.status == 'fermé' %}
 							<tr>
-							
 								<!--GETTING USER WHO HAS CREATED THE TICKET-->
 								<td>{{ ticket.user.firstName }}</td>
 								<td>{{ ticket.user.lastName }}</td>
 								<td>{{ ticket.title }}</td>
 								<td>{{ ticket.content }}</td>
 								<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
-
 								{% for answer in ticket.answers %}
 									<td>{{ answer.description }}</td>
 									<!--GETTING USER WHO HAS RESOLVED THE TICKET-->

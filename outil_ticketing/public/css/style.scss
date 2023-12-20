@@ -47,7 +47,9 @@ small {
 
 /*************** PARTIALS ***************/
 header {
-    i {
+
+    i,
+    p {
         color: #A1A3A6;
     }
 }
@@ -59,6 +61,8 @@ footer {
     background-color: #343A40;
     color: $lightgrey;
     padding-right: 30px;
+    width: 100%;
+    margin: 0;
 
     img {
         height: 80px;
@@ -72,6 +76,10 @@ footer {
 /*************** INDEX ***************/
 #dashboard {
     background-color: $lightgrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     h1 {
         margin: 20px;
@@ -127,24 +135,40 @@ footer {
         }
     }
 
-    table {
-        background-color: white;
-        box-shadow: $lightblue 1px 0 5px;
-        font-family: 'Montserrat', sans-serif;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-        width: 100%;
-    }
+    #openedTickets {
+        .all-tickets {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
 
-    th,
-    td {
-        padding: 12px;
-        text-align: left;
-    }
+            .each-ticket {
+                width: 300px;
+                height: 500px;
+                background-color: white;
+                box-shadow: $lightblue 0px 0px 8px 2px;
+                margin: 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 10px;
+                color: $blue
+            }
 
-    th {
-        border-bottom: 1px solid $lightgrey;
-        font-size: larger;
+            img {
+                width: 250px;
+                height: 180px;
+                margin: 20px;
+            }
+
+            .actions {
+                display: flex;
+            }
+
+            i {
+                margin: 10px;
+                color: $blue;
+            }
+        }
     }
 
 /*************** TICKETS RESOLVED***************/
