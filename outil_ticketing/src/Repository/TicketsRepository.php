@@ -21,6 +21,15 @@ class TicketsRepository extends ServiceEntityRepository
         parent::__construct($registry, Tickets::class);
     }
 
+    // Display tickets in descending order
+    public function findAllOrderedByDateDesc()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.created_at', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // Find/search articles by title/content
     public function findTicketsByName(string $query)
     {
