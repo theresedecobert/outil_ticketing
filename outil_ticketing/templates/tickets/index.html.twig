@@ -28,7 +28,7 @@
 				<tbody>
 					{% for ticket in tickets %}
 						<!--DISPLAY ONLY CLOSED TICKETS-->
-						{% if ticket.status == 'Fermé' %}
+						{% if ticket.status == 'fermé' %}
 							<tr>
 								<td>{{ ticket.id }}</td>
 								<!--GETTING USER WHO HAS CREATED THE TICKET-->
@@ -38,7 +38,7 @@
 								<td>{{ ticket.content }}</td>
 								<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
 
-								{% for answer in answers %}
+								{% for answer in ticket.answers %}
 									<td>{{ answer.description }}</td>
 									<!--GETTING USER WHO HAS RESOLVED THE TICKET-->
 									<td>{{ answer.user.firstName }}{{ answer.user.lastName }}</td>

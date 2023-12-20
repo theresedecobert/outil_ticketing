@@ -46,7 +46,7 @@
 					<tbody>
 						{% for ticket in tickets %}
 							<!--DISPLAY ONLY OPENED TICKETS-->
-							{% if ticket.status == 'Ouvert' %}
+							{% if ticket.status == 'ouvert' %}
 								<tr>
 									<td>{{ ticket.id }}</td>
 									<!--GETTING USER WHO HAS CREATED THE TICKET-->
