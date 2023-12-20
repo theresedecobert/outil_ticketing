@@ -46,11 +46,6 @@
 							<small>Créé le
 								{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</small>
 							<div class="actions">
-								{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
-									<a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">
-										<i class="fa-solid fa-pencil"></i>
-									</a>
-								{% endif %}
 								<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
 									<i class="fa-solid fa-magnifying-glass-plus"></i>
 								</a>

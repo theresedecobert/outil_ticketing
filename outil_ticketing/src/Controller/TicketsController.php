@@ -69,11 +69,22 @@ class TicketsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_tickets_show', methods: ['GET'])]
-    public function show(Tickets $ticket): Response
+  
+    #[Route('/{id}', name: 'app_tickets_show', methods: ['GET', 'POST'])]
+    public function show(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
     {
+        $editForm = $this->createForm(TicketsType::class, $ticket);
+        $editForm->handleRequest($request);
+    
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('app_tickets_show', ['id' => $ticket->getId()]);
+        }
+    
         return $this->render('tickets/show.html.twig', [
             'ticket' => $ticket,
+            'edit_form' => $editForm->createView(),
         ]);
     }
 
