@@ -9,6 +9,7 @@ use App\Service\pictureService;
 use App\Repository\TicketsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,9 +26,17 @@ class TicketsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_tickets_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, pictureService $pictureService): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, pictureService $pictureService, Security $security): Response
     {
         $ticket = new Tickets();
+
+        // Set the connected user as the author of the ticket
+        $user = $security->getUser();
+        $ticket->setUser($user);
+
+        // Set the status on open
+        $ticket->setStatus('ouvert');
+
         $form = $this->createForm(TicketsType::class, $ticket);
         $form->handleRequest($request);
 
@@ -50,7 +59,7 @@ class TicketsController extends AbstractController
             $entityManager->persist($ticket);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('tickets/new.html.twig', [
@@ -68,15 +77,28 @@ class TicketsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_tickets_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Tickets $ticket, EntityManagerInterface $entityManager, Security $security): Response
     {
-        $form = $this->createForm(TicketsType::class, $ticket);
+        // Récupérez l'utilisateur connecté
+        $user = $security->getUser();
+
+        // Vérifiez si l'utilisateur est l'auteur du ticket
+        $isAuthor = $user === $ticket->getUser();
+
+        // Récupérez le rôle de l'utilisateur
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+
+        $form = $this->createForm(TicketsType::class, $ticket, [
+            'is_admin' => $isAdmin,
+            'is_author' => $isAuthor,
+        ]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('tickets/edit.html.twig', [
@@ -93,6 +115,6 @@ class TicketsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }
