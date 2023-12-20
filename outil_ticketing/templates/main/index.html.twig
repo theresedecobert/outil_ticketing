@@ -39,18 +39,24 @@
 							<p>Auteur :
 								{{ ticket.user.firstName }}
 								{{ ticket.user.lastName }}</p>
-							<p>Statut :
-								{{ ticket.status }}</p>
+							<div class="statusBtn {% if ticket.status == 'ouvert' %}open{% else %}closed{% endif %}">
+								{{ ticket.status }}
+							</div>
 							<p>Titre :
 								{{ ticket.title }}</p>
-							<small>Créé le
+							<small style="margin-bottom:10px;">Créé le
 								{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</small>
-							<div class="actions">
-								
-								<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
-									<i class="fa-solid fa-magnifying-glass-plus"></i>
-								</a>
-							</div>
+							{% if ticket.answers is not empty %}
+								<p>Répondu par :
+									{% for answer in ticket.answers %}
+										{{ answer.user.firstName }}
+										{{ answer.user.lastName }}
+									{% endfor %}
+								</p>
+							{% endif %}
+							<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
+								<i class="fa-solid fa-magnifying-glass-plus"></i>
+							</a>
 						</div>
 					{% endfor %}
 				</div>
