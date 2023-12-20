@@ -9,8 +9,10 @@ use App\Service\pictureService;
 use App\Repository\TicketsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tickets')]
@@ -25,9 +27,14 @@ class TicketsController extends AbstractController
     }
 
     #[Route('/new', name: 'app_tickets_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, pictureService $pictureService): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, pictureService $pictureService, Security $security): Response
     {
         $ticket = new Tickets();
+
+        // Set the connected user as the author of the ticket
+        $user = $security->getUser();
+        $ticket->setUser($user);
+
         $form = $this->createForm(TicketsType::class, $ticket);
         $form->handleRequest($request);
 
@@ -50,7 +57,7 @@ class TicketsController extends AbstractController
             $entityManager->persist($ticket);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('tickets/new.html.twig', [
@@ -70,6 +77,13 @@ class TicketsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tickets_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
+
+        // Check if the user is the administrator or the author of the post
+        if (!$this->isGranted('ROLE_ADMIN') && $ticket->getUser() !== $user) {
+            throw $this->createAccessDeniedException('Vous n\'avez pas la permission de modifier ce post.');
+        }
+
         $form = $this->createForm(TicketsType::class, $ticket);
         $form->handleRequest($request);
 
@@ -95,4 +109,6 @@ class TicketsController extends AbstractController
 
         return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
     }
+
+   
 }

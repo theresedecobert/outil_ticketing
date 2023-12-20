@@ -3,8 +3,9 @@
 namespace App\Form;
 
 
-use App\Entity\Tickets;
+use App\Entity\User;
 
+use App\Entity\Tickets;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -23,10 +24,9 @@ class TicketsType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'label' => 'Statut',
                 'choices' => [
-                    'Ouvert' => 'Ouvert',
-                    'Fermé' => 'Fermé',
+                    'ouvert' => 'ouvert',
+                    'fermé' => 'fermé',
                 ],
-                'multiple' => true,
                 'expanded' => true,
             ])
             ->add('title', TextType::class, [
@@ -43,16 +43,6 @@ class TicketsType extends AbstractType
                 ],
             ])
             ->add('created_at')
-
-            ->add('user', EntityType::class, [
-                'label' => 'Auteur',
-                'class' => User::class,
-                'choice_label' => function (User $user) {
-                    return $user->getFirstName() . ' ' . $user->getLastName();},
-                'attr' => [
-                    'class' => 'custom-form'],
-            ])
-
             ->add('files', FileType::class, [
                 'label' => false,
                 'multiple' => true,

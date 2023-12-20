@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Answers;
+use App\Entity\Tickets;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -39,11 +41,13 @@ class AnswersType extends AbstractType
                 'attr' => [
                     'class' => 'custom-form'],
             ])
-            ->add('ticket', TextType::class, [
+            ->add('ticket', EntityType::class, [
+                'class' => Tickets::class,
+                'choice_label' => function (Tickets $ticket) {
+                    return $ticket->getTitle();
+                },
+                'attr' => ['class' => 'custom-form'],
                 'label' => 'Nom du ticket',
-                'attr' => [
-                    'class' => 'custom-form',
-                ],
             ])
             
         ;

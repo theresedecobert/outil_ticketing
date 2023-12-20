@@ -26,14 +26,11 @@
 			</tr>
 			<tr>
 				<th>Impressions écran</th>
-				<td>
-					{% for file in ticket.files %}
-						<a href="{{ asset('uploads/mini/', {'id': file.id}) }}">
-							{{ file.file }}
-						</a>
-						<br>
-					{% endfor %}
-				</td>
+                <td>
+                    {% for file in ticket.files %}
+                        <img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
+                    {% endfor %}
+                </td>
 			</tr>
 			<tr>
 				<th>Date de création</th>
