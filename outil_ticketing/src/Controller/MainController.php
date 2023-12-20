@@ -16,17 +16,18 @@ class MainController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(TicketsRepository $ticketsRepository, AnswersRepository $answersRepository, UserRepository $userRepository): Response
     {
-        // Comptage du nombre de tickets ouverts
+        // Comptage du nombre de tickets ouverts et fermés
         $openedTicketsCount = $ticketsRepository->countByStatus('Ouvert');
-
-        // Comptage du nombre de tickets résolus (fermés)
         $closedTicketsCount = $ticketsRepository->countByStatus('Fermé');
 
         // Recherche du meilleur technicien (celui qui a répondu au plus de tickets)
         $bestTechnician = $userRepository->findBestTechnician();
 
+        // Récupération des tickets du plus récent au plus ancien
+        $tickets = $ticketsRepository->findAllOrderedByDateDesc();
+
         return $this->render('main/index.html.twig', [
-            'tickets' => $ticketsRepository->findAll(),
+            'tickets' => $tickets, // Utilisation de la liste des tickets triée par date
             'answers' => $answersRepository->findAll(),
             'users' => $userRepository->findAll(),
             'openedTicketsCount' => $openedTicketsCount,
