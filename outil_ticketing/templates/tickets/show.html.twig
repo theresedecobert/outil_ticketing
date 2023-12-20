@@ -2,55 +2,71 @@
 
 {% block title %}Ticket{% endblock %}
 {% block body %}
-	<h1>Ticket</h1>
-	<table>
-		<tbody>
-			<tr>
-				<th>Numéro de ticket</th>
-				<td>{{ ticket.id }}</td>
-			</tr>
-			<tr>
-				<th>Statut</th>
-				<td>{{ ticket.status }}</td>
-			</tr>
-			<tr>
-				<th>Titre</th>
-				<td>{{ ticket.title }}</td>
-			</tr>
-			<tr>
-				<th>Contenu</th>
-				<td>{{ ticket.content }}</td>
-			</tr>
-			<tr>
-				<th>Impressions écran</th>
-				<td>
-					{% for file in ticket.files %}
-						<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
-					{% endfor %}
-				</td>
-			</tr>
-			<tr>
-				<th>Date de création</th>
-				<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
-			</tr>
-		</tbody>
-	</table>
-	<a href="{{ path('app_answers_new', {'id': ticket.id}) }}">
-		<i class="fa-regular fa-comment-dots"></i>
-	</a>
-	<a href="{{ path('home') }}">Retour</a>
+<h1>Ticket</h1>
+<table>
+	<tbody>
+		<tr>
+			<th>Numéro de ticket</th>
+			<td>{{ ticket.id }}</td>
+		</tr>
+		<tr>
+			<th>Statut</th>
+			<td>{{ ticket.status }}</td>
+		</tr>
+		<tr>
+			<th>Titre</th>
+			<td>{{ ticket.title }}</td>
+		</tr>
+		<tr>
+			<th>Contenu</th>
+			<td>{{ ticket.content }}</td>
+		</tr>
+		<tr>
+			<th>Impressions écran</th>
+			<td>
+				{% for file in ticket.files %}
+				<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
+				{% endfor %}
+			</td>
+		</tr>
+		<tr>
+			<th>Date de création</th>
+			<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
+		</tr>
+	</tbody>
+</table>
 
-	<!--EDIT-->
-	{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
-		<div id="editForm" style="display: none;">
-			{{ form_start(edit_form) }}
-			{{ form_widget(edit_form) }}
-			<button type="submit">Sauvegarder les modifications</button>
-			{{ form_end(edit_form) }}
-		</div>
-		<button id="editButton">
-			<i class="fa-solid fa-pencil"></i>
+<!--EDIT-->
+<button id="editButton" class="btn">
+	<i class="fa-solid fa-pencil"></i>
+</button>
+{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
+	<div id="editForm" style="display: none;">
+		{{ form_start(edit_form) }}
+		{{ form_widget(edit_form) }}
+		<button type="submit" class="btn">
+			<i class="fa-solid fa-check"></i>
 		</button>
-	{% endif %}
-	{{ include('tickets/_delete_form.html.twig') }}
+		{{ form_end(edit_form) }}
+	</div>
+{% endif %}
+
+<!--ANSWER-->
+<button id="answerButton" class="btn">
+	<i class="fa-regular fa-comment-dots"></i>
+</button>
+<div id="answerForm" style="display: none;">
+	{{ form_start(answerForm) }}
+	{{ form_widget(answerForm) }}
+	<button type="submit" class="btn">
+		<i class="fa-solid fa-check"></i>
+	</button>
+	{{ form_end((answerForm)) }}
+</div>
+
+<!--DELETE-->
+{{ include('tickets/_delete_form.html.twig') }}
+
+<!--GOING BACK-->
+<a href="{{ path('home') }}" class="button">Retour</a>
 {% endblock %}
