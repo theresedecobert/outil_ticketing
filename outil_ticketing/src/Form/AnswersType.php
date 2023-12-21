@@ -29,14 +29,14 @@ class AnswersType extends AbstractType
                     'class' => 'custom-form',
                 ],
             ])
-            ->add('ticket', EntityType::class, [
-                'class' => Tickets::class,
-                'choice_label' => function (Tickets $ticket) {
-                    return $ticket->getTitle();
-                },
-                'attr' => ['class' => 'custom-form'],
-                'label' => 'Nom du ticket',
-            ])
+            // ->add('ticket', EntityType::class, [
+            //     'class' => Tickets::class,
+            //     'choice_label' => function (Tickets $ticket) {
+            //         return $ticket->getTitle();
+            //     },
+            //     'attr' => ['class' => 'custom-form'],
+            //     'label' => 'Nom du ticket',
+            // ])
         ;
     }
 
