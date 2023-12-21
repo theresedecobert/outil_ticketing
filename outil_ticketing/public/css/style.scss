@@ -90,8 +90,45 @@ footer {
     align-items: center;
 
     h1 {
-        margin: 20px;
+        margin: 40px;
         font-weight: bold;
+    }
+
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        table-layout: auto;
+    }
+
+    thead {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    th {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th:nth-child(5) {
+        text-align: center;
+    }
+
+    td:nth-child(5) {
+        padding: 0;
+    }
+
+    .actionsTable {
+        display: flex;
+        justify-content: center;
     }
 
     .ranking {
@@ -177,11 +214,11 @@ footer {
                 margin-bottom: 20px;
                 font-family: 'Montserrat', sans-serif;
             }
-            
+
             .statusBtn.open {
                 background-color: red;
             }
-            
+
             .statusBtn.closed {
                 background-color: green;
             }
@@ -194,18 +231,24 @@ footer {
     }
 }
 
-input#tickets_status_0, input#tickets_status_1 {
+input#tickets_status_0,
+input#tickets_status_1 {
+    margin: 0 5px 0 20px;
+}
+
+input#user_roles_0,
+input#user_roles_1 {
     margin: 0 5px 0 20px;
 }
 
 .custom-form {
-    background-color: $lightgrey;
+    background-color: white;
     opacity: 0.7;
     border: 1px solid $lightgrey;
     border-radius: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     display: block;
-    width: 300px;
+    width: 500px;
     padding: 10px;
 }
 
@@ -213,4 +256,16 @@ input#tickets_status_0, input#tickets_status_1 {
 .actions {
     display: flex;
     margin: 20px;
+}
+
+/*************** SHOW ***************/
+.mainLogin {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        margin: 40px;
+    }
 }

@@ -7,7 +7,8 @@
 	<section class="row m-0">
 		{% include "_partials/_sidebar.html.twig" %}
 
-		<div class="col-md-10 m-0" id="dashboard" style="height:85vh;">
+		<div class="col-md-10 m-0" id="dashboard">
+		{% for ticket in tickets %}
 			<h1>Ticket</h1>
 			<table>
 				<tbody>
@@ -42,40 +43,8 @@
 				</tbody>
 			</table>
 
-			<div class="actions">
-				<!--EDIT-->
-				<button id="editButton" class="btn">
-					<i class="fa-solid fa-pencil"></i>
-				</button>
-				<!--ANSWER-->
-				<button id="answerButton" class="btn">
-					<i class="fa-regular fa-comment-dots"></i>
-				</button>
-				<!--DELETE-->
-				{{ include('tickets/_delete_form.html.twig') }}
-			</div>
-
-			<!--EDIT-->
-			{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
-				<div id="editForm" style="display: none;">
-					{{ form_start(editForm) }}
-					{{ form_widget(editForm) }}
-					<button type="submit" class="btn">
-						<i class="fa-solid fa-check"></i>
-					</button>
-					{{ form_end(editForm) }}
-				</div>
-			{% endif %}
-
-			<!--ANSWER-->
-			<div id="answerForm" style="display: none;">
-				{{ form_start(answerForm) }}
-				{{ form_widget(answerForm) }}
-				<button type="submit" class="btn">
-					<i class="fa-solid fa-check"></i>
-				</button>
-				{{ form_end((answerForm)) }}
-			</div>
+			
+			{% endfor %}
 		</div>
 	</section>
 	{% include "_partials/_footer.html.twig" %}
