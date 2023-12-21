@@ -140,6 +140,7 @@ class TicketsController extends AbstractController
     #[Route('/{id}', name: 'app_tickets_delete', methods: ['POST'])]
     public function delete(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
     {
+
         // Getting connected user
         $user = $this->getUser();
 
