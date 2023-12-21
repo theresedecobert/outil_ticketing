@@ -18,26 +18,17 @@ class AnswersType extends AbstractType
  
         $builder
             ->add('description', TextareaType::class, [
-                'label'=>'Description',
+                'label'=>'Votre réponse',
                 'attr' => [
                     'rows' => '10',
                     'class' => 'custom-form'],
             ])
             ->add('docLink', TextType::class, [
-                'label' => 'Lien de la doc',
+                'label' => 'Lien vers la doc',
                 'attr' => [
                     'class' => 'custom-form',
                 ],
-            ])
-            // ->add('ticket', EntityType::class, [
-            //     'class' => Tickets::class,
-            //     'choice_label' => function (Tickets $ticket) {
-            //         return $ticket->getTitle();
-            //     },
-            //     'attr' => ['class' => 'custom-form'],
-            //     'label' => 'Nom du ticket',
-            // ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

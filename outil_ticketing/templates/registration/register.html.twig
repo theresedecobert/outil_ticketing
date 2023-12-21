@@ -1,53 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Créer un utilisateur
-{% endblock %}
+{% block title %}Créer un utilisateur{% endblock %}
 
 {% block body %}
 	{% include "_partials/_header.html.twig" %}
-	<main class="mainLogin">
-		<h1>Créer un utilisateur</h1>
+	<section class="row m-0">
+		{% include "_partials/_sidebar.html.twig" %}
 
-		{{ form_errors(registrationForm) }}
+		<div class="col-md-10 m-0" id="dashboard" style="height: 85vh;">
+			<h1>Créer un utilisateur</h1>
 
-		{{ form_start(registrationForm) }}
+			{{ form_errors(registrationForm) }}
 
-		<div class="bloc">
-			<label for="{{ registrationForm.firstName.vars.id }}">Prénom</label>
-			{{ form_widget(registrationForm.firstName, {
+			{{ form_start(registrationForm) }}
+
+			<div class="bloc">
+				<label for="{{ registrationForm.firstName.vars.id }}">Prénom</label>
+				{{ form_widget(registrationForm.firstName, {
 				attr: {
 					'class': 'custom-form'
 				}
 			}) }}
 
-			<label for="{{ registrationForm.lastName.vars.id }}">Nom</label>
-			{{ form_widget(registrationForm.lastName, {
+				<label for="{{ registrationForm.lastName.vars.id }}">Nom</label>
+				{{ form_widget(registrationForm.lastName, {
 				attr: {
 					'class': 'custom-form'
 				}
 			}) }}
-		</div>
+			</div>
 
-		<div class="bloc">
-			<label for="{{ registrationForm.email.vars.id }}">Email</label>
-			{{ form_widget(registrationForm.email, {
+			<div class="bloc">
+				<label for="{{ registrationForm.email.vars.id }}">Email</label>
+				{{ form_widget(registrationForm.email, {
                 attr: {
                     'class': 'custom-form'
                 }
             }) }}
 
-			<label for="{{ registrationForm.plainPassword.vars.id }}">Mot de passe</label>
-			{{ form_widget(registrationForm.plainPassword, {
+				<label for="{{ registrationForm.plainPassword.vars.id }}">Mot de passe</label>
+				{{ form_widget(registrationForm.plainPassword, {
                 attr: {
                     'class': 'custom-form',
                     'placeholder': '6 caractères minimum'
                 }
             }) }}
+			</div>
+
+			<button type="submit" class="button">Valider</button>
+
+			{{ form_end(registrationForm) }}
 		</div>
-
-		<button type="submit" class="button">Valider</button>
-
-		{{ form_end(registrationForm) }}
-	</main>
+	</section>
 	{% include "_partials/_footer.html.twig" %}
 {% endblock %}

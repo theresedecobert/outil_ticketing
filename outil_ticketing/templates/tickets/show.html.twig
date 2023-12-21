@@ -7,14 +7,10 @@
 	<section class="row m-0">
 		{% include "_partials/_sidebar.html.twig" %}
 
-		<div class="col-md-10 m-0" id="dashboard">
+		<div class="col-md-10 m-0" id="dashboard" style="padding:50px">
 			<h1>Ticket</h1>
 			<table>
 				<tbody>
-					<tr>
-						<th>Numéro de ticket</th>
-						<td>{{ ticket.id }}</td>
-					</tr>
 					<tr>
 						<th>Statut</th>
 						<td>{{ ticket.status }}</td>
@@ -39,6 +35,37 @@
 						<th>Date de création</th>
 						<td>{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</td>
 					</tr>
+					{% if ticket.answers is not empty %}
+					<tr>
+						<th>Répondu par :</th>
+							<td>{% for answer in ticket.answers %}
+								{{ answer.user.firstName }}
+								{{ answer.user.lastName }}
+								{% endfor %}
+							</td>
+					</tr>
+					<tr>
+						<th>Réponse</th>
+						<td>{% for answer in ticket.answers %}
+							{{ answer.description }}
+							{% endfor %}
+						</td>
+					</tr>
+					<tr>
+						<th>Date de résolution</th>
+						<td>{% for answer in ticket.answers %}
+							{{ answer.resolvedAt ? answer.resolvedAt|date('d-m-Y à H:i') : '' }}
+							{% endfor %}
+						</td>
+					</tr>
+					<tr>
+						<th>Lien vers la doc</th>
+						<td>{% for answer in ticket.answers %}
+							{{ answer.docLink }}
+							{% endfor %}
+						</td>
+					</tr>
+					{% endif %}
 				</tbody>
 			</table>
 			<div class="actions">
@@ -55,5 +82,4 @@
 		</div>
 	</section>
 	{% include "_partials/_footer.html.twig" %}
-
 {% endblock %}

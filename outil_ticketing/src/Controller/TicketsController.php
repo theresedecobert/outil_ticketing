@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Files;
-use App\Entity\Answers;
 use App\Entity\Tickets;
-use App\Form\AnswersType;
 use App\Form\TicketsType;
 use App\Service\pictureService;
 use App\Repository\AnswersRepository;
@@ -62,32 +60,9 @@ class TicketsController extends AbstractController
     }
   
     #[Route('/{id}', name: 'app_tickets_show', methods: ['GET', 'POST'])]
-    public function show(Request $request, Tickets $ticket, EntityManagerInterface $entityManager, AnswersRepository $answersRepository): Response
+    public function show(Tickets $ticket, AnswersRepository $answersRepository): Response
     {
-        $answer = new Answers(); // Créez une nouvelle instance de Answers
-        $answerForm = $this->createForm(AnswersType::class, $answer);
-        $answerForm->handleRequest($request);
-    
-        if ($answerForm->isSubmitted() && $answerForm->isValid()) {
-            // Associez la réponse au ticket, si nécessaire
-            $answer->setTicket($ticket);
-    
-            // Enregistrez la réponse
-            $entityManager->persist($answer);
-            $entityManager->flush();
-    
-            // Redirection ou mise à jour de la vue
-            return $this->redirectToRoute('app_tickets_show', ['id' => $ticket->getId()]);
-        }
-    
-        $editForm = $this->createForm(TicketsType::class, $ticket);
-        $editForm->handleRequest($request);
-    
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $entityManager->flush();
-            return $this->redirectToRoute('app_tickets_show', ['id' => $ticket->getId()]);
-        }
-    
+        
         return $this->render('tickets/show.html.twig', [
             'ticket' => $ticket,
             'answers' => $answersRepository->findAll(),
