@@ -119,8 +119,8 @@ class TicketsController extends AbstractController
         $isAdmin = $this->isGranted('ROLE_ADMIN');
 
         $form = $this->createForm(TicketsType::class, $ticket, [
-            'is_admin' => $isAdmin,
-            'is_author' => $isAuthor,
+            // 'is_admin' => $isAdmin,
+            // 'is_author' => $isAuthor,
         ]);
 
         $form->handleRequest($request);
@@ -137,7 +137,7 @@ class TicketsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_tickets_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_tickets_delete', methods: ['POST'])]
     public function delete(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
     {
 
