@@ -34,11 +34,14 @@ class AnswersController extends AbstractController
             throw $this->createNotFoundException('Ticket not found');
         }
 
+        $user = $security->getUser();
+        if (!$user) {
+            throw new \Exception('User not found or not logged in');
+        }
         $answer = new Answers();
         $answer->setTicket($ticket);  // Associate the answer with the ticket
 
         // Set the connected user as the author of the ticket
-        $user = $security->getUser();
         $answer->setUser($user);
 
         $form = $this->createForm(AnswersType::class, $answer);

@@ -144,7 +144,7 @@ class TicketsController extends AbstractController
     public function delete(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
     {
         // Récupérez l'utilisateur connecté
-        $user = $security->getUser();
+        $user = $this->getUser();
 
         // Vérifiez si l'utilisateur est l'auteur du ticket
         $isAuthor = $user === $ticket->getUser();
