@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestionnaire de tickets{% endblock %}
+{% block title %}Gestionnaire de tickets
+{% endblock %}
 
 {% block body %}
 	{% include "_partials/_header.html.twig" %}
@@ -45,7 +46,7 @@
 								{{ ticket.title }}</p>
 							<small style="margin-bottom:10px;">Créé le
 								{{ ticket.createdAt ? ticket.createdAt|date('d-m-Y à H:i') : '' }}</small>
-                
+
 							{% if ticket.answers is not empty %}
 								<p>Répondu par :
 									{% for answer in ticket.answers %}
@@ -54,8 +55,7 @@
 									{% endfor %}
 								</p>
 							{% endif %}
-						<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
-
+							<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
 								<i class="fa-solid fa-magnifying-glass-plus"></i>
 							</a>
 						</div>

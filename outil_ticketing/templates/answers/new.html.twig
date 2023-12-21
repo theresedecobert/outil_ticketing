@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle réponse{% endblock %}
+{% block title %}Répondre au ticket{% endblock %}
 
 {% block body %}
-    <h1>Nouvelle réponse</h1>
+	{% include "_partials/_header.html.twig" %}
+	<section class="row m-0">
+		{% include "_partials/_sidebar.html.twig" %}
 
-    {{ include('answers/_form.html.twig') }}
+		<div class="col-md-10 m-0" id="dashboard" style="padding:90px">
+			<h1>Répondre au ticket</h1>
 
-    <a href="{{ path('home') }}">Retour</a>
+			{{ include('answers/_form.html.twig') }}
+		</div>
+	</section>
+	{% include "_partials/_footer.html.twig" %}
 {% endblock %}
