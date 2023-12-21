@@ -24,20 +24,20 @@ class AnswersController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_answers_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new/{id}', name: 'app_answers_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
         // Assume you have a method to find the ticket by ID in your repository
         $ticket = $entityManager->getRepository(Tickets::class)->find($id);
 
-        if (!$ticket) {
-            throw $this->createNotFoundException('Ticket not found');
-        }
+        // if (!$ticket) {
+        //     throw $this->createNotFoundException('Ticket not found');
+        // }
 
-        $user = $security->getUser();
-        if (!$user) {
-            throw new \Exception('User not found or not logged in');
-        }
+        // $user = $security->getUser();
+        // if (!$user) {
+        //     throw new \Exception('User not found or not logged in');
+        // }
       
         $answer = new Answers();
 
@@ -50,10 +50,10 @@ class AnswersController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Associating the answer with the user
             $answer->setUser($user);
-
+            $answer->setTicket($ticket);
             $entityManager->persist($answer);
             $entityManager->flush();
-            dd($answer);
+        
             return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
         }
 
