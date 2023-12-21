@@ -18,8 +18,6 @@ class TicketsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $isAuthor = $options['is_author'];
-
         $builder
             ->add('status', ChoiceType::class, [
                 'label' => 'Statut',
@@ -54,8 +52,6 @@ class TicketsType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Tickets::class,
-            'is_admin' => false,
-            'is_author' => false,
         ]);
     }
 }

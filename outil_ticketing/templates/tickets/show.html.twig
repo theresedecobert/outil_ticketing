@@ -7,7 +7,7 @@
 	<section class="row m-0">
 		{% include "_partials/_sidebar.html.twig" %}
 
-		<div class="col-md-10 m-0" id="dashboard" style="height:85vh;">
+		<div class="col-md-10 m-0" id="dashboard">
 			<h1>Ticket</h1>
 			<table>
 				<tbody>
@@ -41,7 +41,6 @@
 					</tr>
 				</tbody>
 			</table>
-
 			<a href="{{ path('app_answers_new', {'id': ticket.id}) }}">
 		<i class="fa-regular fa-comment-dots"></i>
 	</a>
@@ -53,6 +52,12 @@
 			<i class="fa-solid fa-pencil"></i>
 		</a>
 	{% endif %}
-
 	{{ include('tickets/_delete_form.html.twig') }}
+  		</div>
+	</section>
+	{% include "_partials/_footer.html.twig" %}
+ 
 	{% endblock %}
+
+
+

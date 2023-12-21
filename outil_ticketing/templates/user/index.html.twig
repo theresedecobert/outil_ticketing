@@ -1,36 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Index des utilisateurs{% endblock %}
+{% block title %}Index des utilisateurs
+{% endblock %}
 
 {% block body %}
-    <h1>Index des utilisateurs</h1>
+	{% include "_partials/_header.html.twig" %}
+	<section class="row m-0">
+		{% include "_partials/_sidebar.html.twig" %}
 
-    <table class="table-responsive">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Mot de passe</th>
-                <th>Rôle</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<div class="col-md-10 m-0" id="dashboard">
+			<h1>Index des utilisateurs</h1>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Rôle</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.firstName }}</td>
+							<td>{{ user.lastName }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+							<td>
+                                <div class="actionsTable">
+                                    <a href="{{ path('app_user_edit', {'id': user.id}) }}"class="btn"><i class="fa-solid fa-pencil"></i></a>
+                                    {{ include('user/_delete_form.html.twig') }}
+                                </div>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+	{% include "_partials/_footer.html.twig" %}
 {% endblock %}

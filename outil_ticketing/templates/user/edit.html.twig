@@ -3,11 +3,16 @@
 {% block title %}Modifier l'utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Modifier l'utilisateur</h1>
+	{% include "_partials/_header.html.twig" %}
+	<section class="row m-0">
+		{% include "_partials/_sidebar.html.twig" %}
 
-    {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
+		<div class="col-md-10 m-0" id="dashboard" style="height: 85vh;">
+			<h1>Modifier l'utilisateur</h1>
 
-    <a href="{{ path('app_user_index') }}">Retour</a>
+			{{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    {{ include('user/_delete_form.html.twig') }}
+		</div>
+	</section>
+	{% include "_partials/_footer.html.twig" %}
 {% endblock %}

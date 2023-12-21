@@ -83,8 +83,38 @@ footer img {
   align-items: center;
 }
 #dashboard h1 {
-  margin: 20px;
+  margin: 40px;
   font-weight: bold;
+}
+#dashboard table {
+  width: 80%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: auto;
+}
+#dashboard thead {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+#dashboard th {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+#dashboard td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+#dashboard th:nth-child(5) {
+  text-align: center;
+}
+#dashboard td:nth-child(5) {
+  padding: 0;
+}
+#dashboard .actionsTable {
+  display: flex;
+  justify-content: center;
 }
 #dashboard .ranking {
   display: flex;
@@ -173,18 +203,24 @@ footer img {
   color: #2E5597;
 }
 
-input#tickets_status_0, input#tickets_status_1 {
+input#tickets_status_0,
+input#tickets_status_1 {
+  margin: 0 5px 0 20px;
+}
+
+input#user_roles_0,
+input#user_roles_1 {
   margin: 0 5px 0 20px;
 }
 
 .custom-form {
-  background-color: #F7F7F7;
+  background-color: white;
   opacity: 0.7;
   border: 1px solid #F7F7F7;
   border-radius: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: block;
-  width: 300px;
+  width: 500px;
   padding: 10px;
 }
 
@@ -192,4 +228,15 @@ input#tickets_status_0, input#tickets_status_1 {
 .actions {
   display: flex;
   margin: 20px;
+}
+
+/*************** SHOW ***************/
+.mainLogin {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mainLogin h1 {
+  margin: 40px;
 }/*# sourceMappingURL=style.css.map */

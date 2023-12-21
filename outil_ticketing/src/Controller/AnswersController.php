@@ -24,8 +24,8 @@ class AnswersController extends AbstractController
         ]);
     }
 
-    #[Route('/new/{id}', name: 'app_answers_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, $id, Security $security): Response
+    #[Route('/new', name: 'app_answers_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         // Assume you have a method to find the ticket by ID in your repository
         $ticket = $entityManager->getRepository(Tickets::class)->find($id);
@@ -38,20 +38,23 @@ class AnswersController extends AbstractController
         if (!$user) {
             throw new \Exception('User not found or not logged in');
         }
+      
         $answer = new Answers();
-        $answer->setTicket($ticket);  // Associate the answer with the ticket
 
-        // Set the connected user as the author of the ticket
-        $answer->setUser($user);
+        // Getting the connected user
+        $user = $this->getUser();
 
         $form = $this->createForm(AnswersType::class, $answer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Associating the answer with the user
+            $answer->setUser($user);
+
             $entityManager->persist($answer);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_answers_index', [], Response::HTTP_SEE_OTHER);
+            dd($answer);
+            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('answers/new.html.twig', [
@@ -76,7 +79,7 @@ class AnswersController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_answers_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('answers/edit.html.twig', [
@@ -93,6 +96,6 @@ class AnswersController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_answers_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }
