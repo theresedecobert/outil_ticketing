@@ -1,3 +1,38 @@
+@media all and (max-width: 590px) {
+  .ranking {
+    flex-direction: column;
+  }
+  .ranking .closedTickets {
+    margin: 20px 0 !important;
+  }
+  footer {
+    flex-direction: column;
+    padding-bottom: 20px !important;
+  }
+  .custom-form {
+    width: 300px !important;
+  }
+}
+@media all and (max-width: 1000px) {
+  table thead {
+    display: none;
+  }
+  table tr {
+    display: block;
+    margin-bottom: 40px;
+  }
+  table td {
+    display: block;
+    text-align: center;
+    height: auto !important;
+    padding: 12px !important;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
 /*************** GLOBAL ***************/
 h1 {
   font-family: "Montserrat", sans-serif;
@@ -119,7 +154,7 @@ footer img {
 }
 #dashboard .ranking {
   display: flex;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 #dashboard .ranking .openedTickets {
   height: 100px;
@@ -169,7 +204,6 @@ footer img {
 }
 #dashboard #openedTickets .all-tickets .each-ticket {
   width: 300px;
-  height: 500px;
   background-color: white;
   box-shadow: #6777B0 0px 0px 8px 2px;
   margin: 30px;

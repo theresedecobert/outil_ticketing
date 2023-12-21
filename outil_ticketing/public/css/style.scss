@@ -134,7 +134,7 @@ footer {
 
     .ranking {
         display: flex;
-        margin: 40px 0;
+        margin: 20px 0;
 
         .openedTickets {
             height: 100px;
@@ -189,7 +189,6 @@ footer {
 
             .each-ticket {
                 width: 300px;
-                height: 500px;
                 background-color: white;
                 box-shadow: $lightblue 0px 0px 8px 2px;
                 margin: 30px;
