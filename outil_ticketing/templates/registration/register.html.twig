@@ -4,16 +4,50 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Créer un utilisateur</h1>
+	{% include "_partials/_header.html.twig" %}
+	<main class="mainLogin">
+		<h1>Créer un utilisateur</h1>
 
-	{{ form_errors(registrationForm) }}
+		{{ form_errors(registrationForm) }}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
-        }) }}
+		{{ form_start(registrationForm) }}
 
-	<button type="submit" class="button">Valider</button>
-	{{ form_end(registrationForm) }}
+		<div class="bloc">
+			<label for="{{ registrationForm.firstName.vars.id }}">Prénom</label>
+			{{ form_widget(registrationForm.firstName, {
+				attr: {
+					'class': 'custom-form'
+				}
+			}) }}
+
+			<label for="{{ registrationForm.lastName.vars.id }}">Nom</label>
+			{{ form_widget(registrationForm.lastName, {
+				attr: {
+					'class': 'custom-form'
+				}
+			}) }}
+		</div>
+
+		<div class="bloc">
+			<label for="{{ registrationForm.email.vars.id }}">Email</label>
+			{{ form_widget(registrationForm.email, {
+                attr: {
+                    'class': 'custom-form'
+                }
+            }) }}
+
+			<label for="{{ registrationForm.plainPassword.vars.id }}">Mot de passe</label>
+			{{ form_widget(registrationForm.plainPassword, {
+                attr: {
+                    'class': 'custom-form',
+                    'placeholder': '6 caractères minimum'
+                }
+            }) }}
+		</div>
+
+		<button type="submit" class="button">Valider</button>
+
+		{{ form_end(registrationForm) }}
+	</main>
+	{% include "_partials/_footer.html.twig" %}
 {% endblock %}

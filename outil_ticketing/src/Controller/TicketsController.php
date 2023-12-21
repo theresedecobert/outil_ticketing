@@ -141,8 +141,8 @@ class TicketsController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_tickets_delete', methods: ['POST'])]
-    public function delete(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
-    {
+    public function delete(Request $request, Tickets $ticket, EntityManagerInterface $entityManager, Security $security): Response
+    {dd('truc');
         // Récupérez l'utilisateur connecté
         $user = $security->getUser();
 
@@ -151,7 +151,7 @@ class TicketsController extends AbstractController
 
         // Récupérez le rôle de l'utilisateur
         $isAdmin = $this->isGranted('ROLE_ADMIN');
-
+        
         if ($this->isCsrfTokenValid('delete' . $ticket->getId(), $request->request->get('_token'))) {
             $entityManager->remove($ticket);
             $entityManager->flush();
