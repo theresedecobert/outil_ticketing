@@ -27,6 +27,18 @@ class AnswersController extends AbstractController
     #[Route('/new', name: 'app_answers_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Assume you have a method to find the ticket by ID in your repository
+        $ticket = $entityManager->getRepository(Tickets::class)->find($id);
+
+        if (!$ticket) {
+            throw $this->createNotFoundException('Ticket not found');
+        }
+
+        $user = $security->getUser();
+        if (!$user) {
+            throw new \Exception('User not found or not logged in');
+        }
+      
         $answer = new Answers();
 
         // Getting the connected user
