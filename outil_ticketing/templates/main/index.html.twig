@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Gestionnaire de tickets
-{% endblock %}
+{% block title %}Gestionnaire de tickets{% endblock %}
 
 {% block body %}
 	{% include "_partials/_header.html.twig" %}
@@ -54,7 +53,7 @@
 									{% endfor %}
 								</p>
 							{% endif %}
-							<a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
+							<a href="{{ path('app_tickets_index', {'id': ticket.id}) }}">
 								<i class="fa-solid fa-magnifying-glass-plus"></i>
 							</a>
 						</div>
