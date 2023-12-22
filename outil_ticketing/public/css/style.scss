@@ -166,6 +166,7 @@ footer {
         .openedTickets {
             height: 100px;
             width: 180px;
+            padding-top: 12px;
             background-color: $lightblue;
             color: $lightgrey;
             display: flex;
@@ -185,6 +186,7 @@ footer {
         .closedTickets {
             height: 100px;
             width: 180px;
+            padding-top: 12px;
             background-color: $blue;
             color: $lightgrey;
             display: flex;
@@ -205,6 +207,7 @@ footer {
             height: 100px;
             width: 180px;
             margin-left: 50px;
+            padding-top: 12px;
             background-color: $lightblue;
             color: $lightgrey;
             display: flex;
