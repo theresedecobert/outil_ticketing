@@ -36,7 +36,7 @@ class AnswersController extends AbstractController
             $entityManager->persist($answer);
             $entityManager->flush();
         
-            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('answers/new.html.twig', [
