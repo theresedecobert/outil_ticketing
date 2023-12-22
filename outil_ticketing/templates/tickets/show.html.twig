@@ -71,10 +71,12 @@
 			<div class="actions">
 				<a href="{{ path('app_answers_new', {'id': ticket.id}) }}" class="btn">
 					<i class="fa-regular fa-comment-dots"></i>
+					 <span class="tooltip">Répondre</span> <!-- Ajoutez ceci -->
 				</a>
 				{% if is_granted('ROLE_ADMIN') or ticket.user == app.user %}
 					<a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}" class="btn">
 						<i class="fa-solid fa-pencil"></i>
+						 <span class="tooltip">Modifier</span> <!-- Et ceci -->
 					</a>
 				{% endif %}
 				{{ include('tickets/_delete_form.html.twig') }}
