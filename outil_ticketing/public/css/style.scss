@@ -156,6 +156,10 @@ footer {
             box-shadow: $lightblue 1px 0 5px;
         }
 
+        .openedTickets:hover {
+            box-shadow: $lightblue 1px 0 20px;
+        }
+
         .closedTickets {
             height: 100px;
             width: 180px;
@@ -171,9 +175,14 @@ footer {
             box-shadow: $blue 1px 0 5px;
         }
 
+        .closedTickets:hover {
+            box-shadow: $blue 1px 0 20px;
+        }
+
         .bestTech {
             height: 100px;
             width: 180px;
+            margin-left: 50px;
             background-color: $lightblue;
             color: $lightgrey;
             display: flex;
