@@ -14,19 +14,23 @@
 			<!--RANKINGS OF TICKETS AND BEST TECHNICIEN-->
 			<div class="ranking">
 				<div class="openedTickets" id="filterOpenTickets">
-					<div class="rank">{{ openedTicketsCount }}</div>Tickets en cours
+					<div class="rank">{{ openedTicketsCount }}</div>
+					<p>Tickets en cours</p>
 				</div>
 				<div class="closedTickets" id="filterClosedTickets">
-					<div class="rank">{{ closedTicketsCount }}</div>Tickets résolus
+					<div class="rank">{{ closedTicketsCount }}</div>
+					<p>Tickets résolus</p>
 				</div>
 				<div class="bestTech">
 					<div class="rank">
-						{% if bestTechnician %}
-							{{ bestTechnician.firstName }}
-							{{ bestTechnician.lastName }}{% else %}Aucun technicien trouvé
-						{% endif %}
+						<p>
+							{% if bestTechnician %}
+								{{ bestTechnician.firstName }}
+								{{ bestTechnician.lastName }}{% else %}Aucun technicien trouvé
+							{% endif %}
+						</p>
 					</div>
-					Best tech !
+					<p>Best tech !</p>
 				</div>
 			</div>
 
@@ -71,39 +75,39 @@
 	{% include "_partials/_footer.html.twig" %}
 
 	<script>
-	// Animation to filter the tickets by status
-		document.addEventListener('DOMContentLoaded', function () {
-		const openTicketsButton = document.getElementById('filterOpenTickets');
-		const closedTicketsButton = document.getElementById('filterClosedTickets');
+		// Animation to filter the tickets by status
+document.addEventListener('DOMContentLoaded', function () {
+const openTicketsButton = document.getElementById('filterOpenTickets');
+const closedTicketsButton = document.getElementById('filterClosedTickets');
 
-		const allTickets = document.querySelectorAll('.each-ticket');
+const allTickets = document.querySelectorAll('.each-ticket');
 
-		openTicketsButton.addEventListener('click', function () {
-		filterTickets('Ouvert');
-		});
+openTicketsButton.addEventListener('click', function () {
+filterTickets('Ouvert');
+});
 
-		closedTicketsButton.addEventListener('click', function () {
-		filterTickets('Fermé');
-		});
+closedTicketsButton.addEventListener('click', function () {
+filterTickets('Fermé');
+});
 
-		function filterTickets(filter) {
-			allTickets.forEach(function (ticket) {
-			const status = ticket.querySelector('.statusBtn').textContent.trim();
+function filterTickets(filter) {
+allTickets.forEach(function (ticket) {
+const status = ticket.querySelector('.statusBtn').textContent.trim();
 
-				if ((filter === 'Ouvert' && status === 'Ouvert') || (filter === 'Fermé' && status === 'Fermé')) {
-				ticket.style.display = 'flex';
-				} else {
-				ticket.style.display = 'none';
-				}
-			});
-		}
-		});
+if ((filter === 'Ouvert' && status === 'Ouvert') || (filter === 'Fermé' && status === 'Fermé')) {
+ticket.style.display = 'flex';
+} else {
+ticket.style.display = 'none';
+}
+});
+}
+});
 
-		// Javascript animation
-		document.addEventListener('DOMContentLoaded', function () {
-			const christmasMessage = `🦄 Les développeuses sont dans la place ! ✨`;
+// Javascript animation
+document.addEventListener('DOMContentLoaded', function () {
+const christmasMessage = `🦄 Les développeuses sont dans la place ! ✨`;
 
-			console.log('%c ' + christmasMessage, 'color: violet; font-size: 16px;');
-		});
+console.log('%c ' + christmasMessage, 'color: violet; font-size: 16px;');
+});
 	</script>
 {% endblock %}
