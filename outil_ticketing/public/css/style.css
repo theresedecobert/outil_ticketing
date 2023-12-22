@@ -10,6 +10,9 @@
   .ranking .closedTickets {
     margin: 20px 0 !important;
   }
+  .ranking .bestTech {
+    margin: 0 !important;
+  }
   footer {
     flex-direction: column;
     padding-bottom: 20px !important;
@@ -192,6 +195,7 @@ footer img {
 #dashboard .ranking .openedTickets {
   height: 100px;
   width: 180px;
+  padding-top: 12px;
   background-color: #6777B0;
   color: #F7F7F7;
   display: flex;
@@ -209,6 +213,7 @@ footer img {
 #dashboard .ranking .closedTickets {
   height: 100px;
   width: 180px;
+  padding-top: 12px;
   background-color: #2E5597;
   color: #F7F7F7;
   display: flex;
@@ -227,6 +232,7 @@ footer img {
   height: 100px;
   width: 180px;
   margin-left: 50px;
+  padding-top: 12px;
   background-color: #6777B0;
   color: #F7F7F7;
   display: flex;
