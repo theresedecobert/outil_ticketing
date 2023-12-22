@@ -1,3 +1,8 @@
+@media all and (max-width: 920px) {
+  #sidebar span {
+    display: none;
+  }
+}
 @media all and (max-width: 590px) {
   .ranking {
     flex-direction: column;
@@ -82,9 +87,14 @@ a:hover {
 }
 
 /*************** PARTIALS ***************/
-header i,
-header p {
-  color: #A1A3A6;
+header .navbar {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+header .navbar .blocRight {
+  display: flex;
+  align-items: center;
 }
 
 footer {
@@ -263,6 +273,10 @@ input#user_roles_1 {
 .actions {
   display: flex;
   margin: 20px;
+}
+
+img.printscreen {
+  width: 100%;
 }
 
 /*************** LOGIN & REGISTER ***************/

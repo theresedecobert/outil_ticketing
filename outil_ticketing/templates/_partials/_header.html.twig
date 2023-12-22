@@ -1,12 +1,23 @@
 <header>
-	<nav class="navbar navbar-expand-md navbar-dark bg-dark d-flex justify-content-end">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark d-flex">
+		<div class="blocLeft mt-3 ml-3">
 			{% if app.user %}
-				<p class="mt-3 mr-3">Bienvenue {{ app.user.firstName }} {{ app.user.lastName }}</p>
+				<p style="color: #A1A3A6;">Bienvenue
+					{{ app.user.firstName }} 
+					{{ app.user.lastName }} !
+				</p>
 			{% endif %}
-		<a class="nav-link" href="https://discord.com/channels/1125364671491362858/1153242082673172480" target="_blank">
-			<i class="fa-brands fa-discord"></i></a>
-
-		<a class="nav-link" href="{{ path('app_logout') }}">
-			<i class="fa-solid fa-right-from-bracket"></i></a>
+		</div>
+		<div class="blocRight">
+			<div class="searchBar mr-3">
+				{{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+			</div>
+			<a class="nav-link" href="https://discord.com/channels/1125364671491362858/1153242082673172480" target="_blank">
+				<i class="fa-brands fa-discord" style="color: #A1A3A6;"></i>
+			</a>
+			<a class="nav-link" href="{{ path('app_logout') }}">
+				<i class="fa-solid fa-right-from-bracket" style="color: #A1A3A6;"></i>
+			</a>
+		</div>
 	</nav>
 </header>
