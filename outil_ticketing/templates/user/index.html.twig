@@ -24,12 +24,12 @@
 				<tbody>
 					{% for user in users %}
 						<tr>
-							<td>{{ user.firstName }}</td>
-							<td>{{ user.lastName }}</td>
-							<td>{{ user.email }}</td>
-							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+							<td data-label="Nom :">{{ user.firstName }}</td>
+							<td data-label="Prénom :">{{ user.lastName }}</td>
+							<td data-label="Email :">{{ user.email }}</td>
+							<td data-label="Rôle :">{{ user.roles ? user.roles|json_encode : '' }}</td>
 							<td>
-                                <div class="actionsTable">
+                                <div class="actionsTable" data-label="Actions :">
                                     <a href="{{ path('app_user_edit', {'id': user.id}) }}"class="btn"><i class="fa-solid fa-pencil"></i></a>
                                     {{ include('user/_delete_form.html.twig') }}
                                 </div>

@@ -51,10 +51,15 @@ a:hover {
 
 /*************** PARTIALS ***************/
 header {
+    .navbar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
 
-    i,
-    p {
-        color: #A1A3A6;
+        .blocRight {
+            display: flex;
+            align-items: center;
+        }
     }
 }
 
@@ -134,7 +139,7 @@ footer {
 
     .ranking {
         display: flex;
-        margin: 40px 0;
+        margin: 20px 0;
 
         .openedTickets {
             height: 100px;
@@ -189,7 +194,6 @@ footer {
 
             .each-ticket {
                 width: 300px;
-                height: 500px;
                 background-color: white;
                 box-shadow: $lightblue 0px 0px 8px 2px;
                 margin: 30px;
@@ -257,6 +261,10 @@ input#user_roles_1 {
 .actions {
     display: flex;
     margin: 20px;
+}
+
+img.printscreen {
+    width: 100%;
 }
 
 /*************** LOGIN & REGISTER ***************/

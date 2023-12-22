@@ -27,7 +27,7 @@
 						<th>Impressions écran</th>
 						<td>
 							{% for file in ticket.files %}
-								<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
+								<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran" class="printscreen">
 							{% endfor %}
 						</td>
 					</tr>
@@ -37,7 +37,7 @@
 					</tr>
 					{% if ticket.answers is not empty %}
 					<tr>
-						<th>Répondu par :</th>
+						<th>Répondu par</th>
 							<td>{% for answer in ticket.answers %}
 								{{ answer.user.firstName }}
 								{{ answer.user.lastName }}

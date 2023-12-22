@@ -1,0 +1,50 @@
+@media all and (max-width:920px) {
+    #sidebar span {
+        display: none;
+    }
+}
+
+@media all and (max-width:590px) {
+    .ranking {
+        flex-direction: column;
+
+        .closedTickets {
+            margin: 20px 0 !important;
+        }
+    }
+
+    footer {
+        flex-direction: column;
+        padding-bottom: 20px !important;
+    }
+
+    .custom-form {
+        width: 300px !important;
+    }
+}
+
+@media all and (max-width:1000px) {
+    table {
+        thead {
+            display: none;
+        }
+
+        tr {
+            display: block;
+            margin-bottom: 40px;
+        }
+
+        td {
+            display: block;
+            text-align: center;
+            height: auto !important;
+            padding: 12px !important;
+        }
+
+        td:before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+        }
+    }
+}

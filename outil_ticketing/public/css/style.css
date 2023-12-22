@@ -1,3 +1,43 @@
+@media all and (max-width: 920px) {
+  #sidebar span {
+    display: none;
+  }
+}
+@media all and (max-width: 590px) {
+  .ranking {
+    flex-direction: column;
+  }
+  .ranking .closedTickets {
+    margin: 20px 0 !important;
+  }
+  footer {
+    flex-direction: column;
+    padding-bottom: 20px !important;
+  }
+  .custom-form {
+    width: 300px !important;
+  }
+}
+@media all and (max-width: 1000px) {
+  table thead {
+    display: none;
+  }
+  table tr {
+    display: block;
+    margin-bottom: 40px;
+  }
+  table td {
+    display: block;
+    text-align: center;
+    height: auto !important;
+    padding: 12px !important;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
 /*************** GLOBAL ***************/
 h1 {
   font-family: "Montserrat", sans-serif;
@@ -47,9 +87,14 @@ a:hover {
 }
 
 /*************** PARTIALS ***************/
-header i,
-header p {
-  color: #A1A3A6;
+header .navbar {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+header .navbar .blocRight {
+  display: flex;
+  align-items: center;
 }
 
 footer {
@@ -119,7 +164,7 @@ footer img {
 }
 #dashboard .ranking {
   display: flex;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 #dashboard .ranking .openedTickets {
   height: 100px;
@@ -169,7 +214,6 @@ footer img {
 }
 #dashboard #openedTickets .all-tickets .each-ticket {
   width: 300px;
-  height: 500px;
   background-color: white;
   box-shadow: #6777B0 0px 0px 8px 2px;
   margin: 30px;
@@ -229,6 +273,10 @@ input#user_roles_1 {
 .actions {
   display: flex;
   margin: 20px;
+}
+
+img.printscreen {
+  width: 100%;
 }
 
 /*************** LOGIN & REGISTER ***************/
