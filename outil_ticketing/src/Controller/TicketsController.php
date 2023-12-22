@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/tickets')]
 class TicketsController extends AbstractController
 {
-    
+
     #[Route('/new', name: 'app_tickets_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, pictureService $pictureService): Response
     {
@@ -45,7 +45,7 @@ class TicketsController extends AbstractController
                 $file = new Files();
                 $file->setFile($fichier);
                 $ticket->addFile($file);
-            } 
+            }
 
             $entityManager->persist($ticket);
             $entityManager->flush();
@@ -58,11 +58,11 @@ class TicketsController extends AbstractController
             'form' => $form,
         ]);
     }
-  
+
     #[Route('/{id}', name: 'app_tickets_show', methods: ['GET', 'POST'])]
     public function show(Tickets $ticket, AnswersRepository $answersRepository): Response
     {
-        
+
         return $this->render('tickets/show.html.twig', [
             'ticket' => $ticket,
             'answers' => $answersRepository->findAll(),
@@ -70,7 +70,7 @@ class TicketsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_tickets_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tickets $ticket, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Tickets $ticket, EntityManagerInterface $entityManager, pictureService $pictureService): Response
     {
 
         // Getting connected user
@@ -90,6 +90,21 @@ class TicketsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            // Getting pictures
+            $files = $form->get('files')->getData();
+
+            foreach ($files as $file) {
+                // Setting destination folder
+                $folder = 'tickets';
+                $fichier = $pictureService->add($file, $folder, 300, 300);
+
+                $file = new Files();
+                $file->setFile($fichier);
+                $ticket->addFile($file);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
