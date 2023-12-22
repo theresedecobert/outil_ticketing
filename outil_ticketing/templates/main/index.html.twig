@@ -34,7 +34,9 @@
 					{% for ticket in tickets %}
 						<div class="each-ticket">
 							{% for file in ticket.files %}
-								<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
+								{% if loop.first %}
+									<img src="{{ asset('assets/uploads/tickets/' ~ file.file) }}" alt="impression écran">
+								{% endif %}
 							{% endfor %}
 							<p>Auteur :
 								{{ ticket.user.firstName }}
